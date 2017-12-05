@@ -26,4 +26,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function friends()
+    {
+        return $this->hasMany('App\Friend', 'id_user1');
+    }
+
+    public function games()
+    {
+       return $this->hasManyThrough('App\Game', 'App\UserGame', 'id_user', 'id', 'id');
+    }
+
+    public function friendList()
+    {
+        $friend_ids = array();
+
+        foreach ($this->friends as $friend) {
+            $friend_ids[] = $friend->id_user2;
+        }
+
+        return User::whereIn('id', $friend_ids)->get();
+    }
 }

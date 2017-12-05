@@ -14,11 +14,12 @@ class Termin extends Migration
     public function up()
     {
         Schema::create('termin', function (Blueprint $table) {
-            $table->increments('id_Termin');
-            $table->string('beschreibung');
-            $table->string('start_datum');
-            $table->string('end_datum');
-            $table->integer('id_Kalender');
+            $table->increments('id');
+            $table->integer('id_kalender');
+            $table->text('beschreibung');
+            $table->timestamp('start_datum')->nullable();
+            $table->timestamp('end_datum')->nullable();
+            $table->timestamps();
         });
     }
 

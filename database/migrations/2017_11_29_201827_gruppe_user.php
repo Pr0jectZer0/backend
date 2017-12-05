@@ -17,6 +17,7 @@ class GruppeUser extends Migration
             $table->increments('id_gruppe');
             $table->integer('id_user');
             $table->string('rolle');
+            $table->timestamps();
         });
     }
 

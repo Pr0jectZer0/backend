@@ -14,8 +14,11 @@ class Freunde extends Migration
     public function up()
     {
         Schema::create('freunde', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('id_user1');
             $table->integer('id_user2');
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 

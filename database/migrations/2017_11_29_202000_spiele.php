@@ -15,12 +15,11 @@ class Spiele extends Migration
     {
         Schema::create('spiele', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_genre');
+            $table->integer('id_publisher');
             $table->string('name');
-            $table->string('beschreibung');
-            $table->integer('bewertungGes');
-            $table->string('erscheinungsDatum');
-            $table->integer('id_Genre');
-            $table->integer('id_Publisher');
+            $table->text('beschreibung');
+            $table->timestamps();
         });
 
     }

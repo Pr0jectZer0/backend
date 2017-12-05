@@ -20,7 +20,7 @@ class AuthController extends Controller
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'error' => 'Falsche E-Mail Password kombination!'
+                    'error' => 'Diese Kombination aus Zugangsdaten wurden nicht in unserer Datenbank gefunden.'
                 ], 401);
             }
         } catch (JWTException $e) {

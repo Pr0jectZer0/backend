@@ -17,6 +17,7 @@ class Notiz extends Migration
             $table->increments('id');
             $table->string('titel');
             $table->text('text');
+            $table->timestamps();
         });
     }
 

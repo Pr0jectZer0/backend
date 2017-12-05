@@ -14,9 +14,11 @@ class UserNotiz extends Migration
     public function up()
     {
         Schema::create('user_notiz', function (Blueprint $table) {
-            $table->increments('id_notiz');
+            $table->increments('id');
+            $table->integer('id_notiz');
             $table->integer('id_user');
             $table->string('rolle');
+            $table->timestamps();
         });
     }
 

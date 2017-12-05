@@ -14,8 +14,12 @@ class UserSpiele extends Migration
     public function up()
     {
         Schema::create('user_spiele', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('id_user');
             $table->integer('id_spiel');
+            $table->integer('bewertung');
+            $table->timestamps();
+
         });
     }
 
