@@ -83,7 +83,7 @@
             var $chatUsers = $('ul.chatUsers');
 
             // open a socket connection
-            var socket = new io.connect('https://pr0jectzer0.ml:8080', {
+            var socket = new io.connect('http://pr0jectzer0.ml:3000', {
                 'reconnection': true,
                 'reconnectionDelay': 1000,
                 'reconnectionDelayMax' : 5000,
@@ -98,6 +98,7 @@
 
             $messageForm.on('submit', function (e) {
                 e.preventDefault();
+                alert("sdsaf");
 
                 socket.emit('chat.send.message', {msg: $messageBox.val(), nickname: 'Frank'});
                 $messageBox.val('');
