@@ -1,13 +1,13 @@
 var app     = require('express')(),
-    https    = require('https').Server(app),
-    io      = require('socket.io')(https),
+    http    = require('http').Server(app),
+    io      = require('socket.io')(http),
     Redis   = require('ioredis'),
     redis   = new Redis();
 
 var port = 3000,
     users = nicknames = {};
 
-https.listen(port, function() {
+http.listen(port, function() {
     console.log('Listening on *:' + port);
 });
 

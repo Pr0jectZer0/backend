@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/chat', function () {
+    return view('chat');
+});
+
+
 Route::get('/docs', function () {
     return public_path().'/docs/index.html';
 });
