@@ -54,7 +54,7 @@ class SpieleController extends Controller
 
     public function delete($id)
     {
-        $game = Game::find($id);
+        $game = Game::findOrfail($id);
         $game->delete();
         return response()->json(['message' => 'Spiel wurde gelöscht.'], 200);
     }

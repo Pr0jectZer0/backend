@@ -20,7 +20,6 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->input('name'),
             'password' => bcrypt($request->input('password')),
-            'alter_jahre' => $request->input('alter_jahre'),
             'email' => $request->input('email'),
             'geheimfrage' => $request->input('geheimfrage'),
             'geheimantwort' => $request->input('geheimantwort'),
@@ -61,7 +60,7 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        $user = User::find($id);
+        $user = User::findOrfail($id);
         $user->delete();
         return response()->json(['message' => 'User wurde gelöscht.'], 200);
     }
