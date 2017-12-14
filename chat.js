@@ -7,7 +7,7 @@ var app     = require('express')(),
 var port = 3000,
     users = nicknames = {};
 
-http.listen(port, function() {
+https.listen(port, function() {
     console.log('Listening on *:' + port);
 });
 
