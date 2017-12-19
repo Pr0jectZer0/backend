@@ -28,7 +28,7 @@ class ChatController extends Controller
             if ($lastId) {
                 $lastId++;
             } else {
-                $lastId = 1;
+                $lastId = 0;
             }
 
             $chatRoom = new ChatRoom();
