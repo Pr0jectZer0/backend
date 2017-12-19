@@ -30,9 +30,7 @@
     channel.bind('App\\Events\\MessageSent', addMessage);
 
     function addMessage(data) {
-        var listItem = $("<li class='list-group-item'></li>");
-        listItem.html(data.message);
-        $('#messages').prepend(listItem);
+       alert("New Message send!")
     }
 </script>
 </body>
