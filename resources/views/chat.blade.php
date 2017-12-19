@@ -22,7 +22,7 @@
         host: 'https://pr0jectzer0.ml',
         auth: {
             headers: {
-                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2OTM3OTIsImV4cCI6MTUxMzY5NzM5MiwibmJmIjoxNTEzNjkzNzkyLCJqdGkiOiJMeWs0OENUazhYdEJkcmZqIn0.lk1MQWMD3bifzGCLzwWTYxYTi8s4Xj7frVk4LoGmzdc'
+                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM3MDA0NjgsImV4cCI6MTUxMzcwNDA2OCwibmJmIjoxNTEzNzAwNDY4LCJqdGkiOiJzQzVETnlnaU53WUFCQzU3In0._8BNjkUywC9wigJEEUPozEU7A5OIb9rK065MamxoH8I'
             }
         }
     });
