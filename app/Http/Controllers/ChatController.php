@@ -16,7 +16,9 @@ class ChatController extends Controller
         $user = JWTAuth::toUser($request->input('token'));
         $chatUser = User::findOrfail($id);
 
-        $chatRoom = ChatRoom::where('user_id', $user->id)->where('user_id', $chatUser->id)->get();
+        $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])->get();
+
+        dd($chatRoom);
 
         if(count($chatRoom) != 2){
             return response()->json(['message' => 'Keine Nachrichten vorhanden.'], 200);
