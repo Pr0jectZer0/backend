@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+
 class ChatController extends Controller
 {
     public function fetchMessages(Request $request, $id)
