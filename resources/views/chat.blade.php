@@ -31,8 +31,9 @@
     //Subscribe to the channel we specified in our Laravel Event
     var channel = pusher.subscribe('private-chat.1');
 
-    channel.bind('App\\Events\\MessageSent', function() {
-        alert("New Messeage!");
+    channel.bind('App\\Events\\MessageSent', function(data) {
+        alert("New Messeage");
+        console.log(data);
     });
 </script>
 </body>
