@@ -24,7 +24,7 @@ class ChatController extends Controller
 
             $chatRoom = $chatRoom->first();
 
-            $message = Message::where('chatroom_id', $chatRoom->chatroom_id)->get();
+            $message = Message::with('user')->where('chatroom_id', $chatRoom->chatroom_id)->get();
             return response()->json(['message' => $message], 200);
         }
     }
