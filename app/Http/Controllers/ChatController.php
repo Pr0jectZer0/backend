@@ -21,6 +21,9 @@ class ChatController extends Controller
         if(count($chatRoom) != 2){
             return response()->json(['message' => 'Keine Nachrichten vorhanden.'], 200);
         }else{
+
+            dd($chatRoom);
+
             $message = Message::where('chatroom_id', $chatRoom->chatroom_id)->get();
             return response()->json(['message' => $message], 200);
         }
