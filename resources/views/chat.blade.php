@@ -15,7 +15,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://js.pusher.com/3.1/pusher.min.js"></script>
 <script>
-    //instantiate a Pusher object with our Credential's key
     var pusher = new Pusher('60b89a1e182fd4635842', {
         cluster: 'eu',
         encrypted: true,
@@ -28,12 +27,10 @@
         }
     });
 
-    //Subscribe to the channel we specified in our Laravel Event
     var channel = pusher.subscribe('private-chat.1');
 
     channel.bind('App\\Events\\MessageSent', function(data) {
-        alert("New Messeage");
-        console.log(data);
+        alert(data.message); //Neue Nachricht bekommen
     });
 </script>
 </body>

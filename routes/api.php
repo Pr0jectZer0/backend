@@ -98,12 +98,17 @@ Route::get('/user/game/list', [
     'middleware' => 'auth.jwt'
 ]);
 
-Route::get('messages/{id}', [
+Route::get('/chatroom/{user_id}', [
+    'uses' =>  'ChatController@getPrivateChatRoom',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/chatroom/{chatroom_id}/messages', [
     'uses' =>  'ChatController@fetchMessages',
     'middleware' => 'auth.jwt'
 ]);
 
-Route::post('messages/{id}', [
+Route::post('/chatroom/{chatroom_id}/messages', [
     'uses' =>  'ChatController@sendMessage',
     'middleware' => 'auth.jwt'
 ]);

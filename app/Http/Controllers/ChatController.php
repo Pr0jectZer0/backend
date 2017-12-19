@@ -12,30 +12,15 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ChatController extends Controller
 {
-    public function fetchMessages(Request $request, $id)
-    {
+    public function getPrivateChatRoom(Request $request, $user_id){
+
         $user = JWTAuth::toUser($request->input('token'));
-        $chatUser = User::findOrfail($id);
+        $chatUser = User::findOrfail($user_id);
 
-        $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])->get();
-
-        if (count($chatRoom) != 2) {
-            return response()->json(['message' => 'Keine Nachrichten vorhanden.'], 200);
-        } else {
-
-            $chatRoom = $chatRoom->first();
-
-            $message = Message::with('user')->where('chatroom_id', $chatRoom->chatroom_id)->get();
-            return response()->json(['message' => $message], 200);
-        }
-    }
-
-    public function sendMessage(Request $request, $id)
-    {
-        $user = JWTAuth::toUser($request->input('token'));
-        $chatUser = User::findOrfail($id);
-
-        $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])->get();
+        $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])
+            ->groupBy('user_id')
+            ->orderBy('chatroom_id', 'asc')
+            ->get();
 
         if (count($chatRoom) != 2) {
             $lastId = ChatRoom::orderBy('id', 'desc')->first();
@@ -61,8 +46,24 @@ class ChatController extends Controller
             $chatRoom = $chatRoom->first();
         }
 
+        return response()->json(['chatroom' => $chatRoom->chatroom_id], 200);
+    }
+
+    public function fetchMessages(Request $request, $chatroom_id)
+    {
+        //$user = JWTAuth::toUser($request->input('token'));
+        //$chatRoom = ChatRoom::where('chatroom_id', $chatroom_id)->where('user_id', '!=', $user->id)->first();
+        //$chatUser = User::findOrfail($chatRoom->user_id);
+        $message = Message::with('user')->where('chatroom_id', $chatroom_id)->get();
+        return response()->json(['message' => $message], 200);
+    }
+
+    public function sendMessage(Request $request, $chatroom_id)
+    {
+        $user = JWTAuth::toUser($request->input('token'));
+
         $message = $user->messages()->create([
-            'chatroom_id' => $chatRoom->chatroom_id,
+            'chatroom_id' => $chatroom_id,
             'message' => $request->input('message')
         ]);
 
