@@ -18,8 +18,6 @@ class ChatController extends Controller
 
         $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])->get();
 
-        dd($chatRoom);
-
         if(count($chatRoom) != 2){
             return response()->json(['message' => 'Keine Nachrichten vorhanden.'], 200);
         }else{
