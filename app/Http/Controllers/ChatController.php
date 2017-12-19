@@ -48,6 +48,8 @@ class ChatController extends Controller
             $chatRoom->save();
 
             $chatRoomId = $lastId;
+        }else{
+            $chatRoomId = $chatRoomId[0];
         }
 
         return response()->json(['chatroom' => $chatRoomId], 200);
