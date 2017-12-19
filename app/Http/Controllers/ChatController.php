@@ -66,7 +66,7 @@ class ChatController extends Controller
             'message' => $request->input('message')
         ]);
 
-      // broadcast(new MessageSent($user, $message))->toOthers();
+        broadcast(new MessageSent($user, $message))->toOthers();
 
        return response()->json(['message' => 'Nachricht wurde gesendet.'], 201);
     }
