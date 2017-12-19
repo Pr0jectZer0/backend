@@ -37,6 +37,16 @@ class User extends Authenticatable
        return $this->hasManyThrough('App\Game', 'App\UserGame', 'id_user', 'id', 'id');
     }
 
+    public function messages()
+    {
+        return $this->hasMany('App\Message');
+    }
+
+    public function chatRooms()
+    {
+        return $this->hasMany('App\ChatRoom');
+    }
+
     public function friendList()
     {
         $friend_ids = array();

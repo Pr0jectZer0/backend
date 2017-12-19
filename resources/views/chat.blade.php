@@ -95,55 +95,6 @@
                 socket.emit('join', {id: "1", name: "Frank"});
             });
 
-
-            $messageForm.on('submit', function (e) {
-                e.preventDefault();
-                alert("sdsaf");
-
-                socket.emit('chat.send.message', {msg: $messageBox.val(), nickname: 'Frank'});
-                $messageBox.val('');
-            });
-
-
-            // get connected users and display to all conected
-            socket.on('chat.users', function (nicknames) {
-                var html = '';
-
-                $.each(nicknames, function (index, value) {
-                    html += '<li><a href="' + value.socketId + '">' + value.nickname + '</a></li>';
-                });
-
-                $chatUsers.html(html);
-            });
-
-
-            // wait for a new message and append into each connection chat window
-            socket.on('chat.message', function (data) {
-
-                data = JSON.parse(data);
-
-                if(data.hasOwnProperty('system')) {
-                    toastr["success"](data.msg);
-                } else {
-                    $chat.append(
-                        '<li class="left clearfix">' +
-                        '<span class="chat-img pull-left">' +
-                        '<img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" width="50" />' +
-                        '</span>' +
-
-                        '<div class="chat-body clearfix">' +
-                        '<div class="header">' +
-                        '<strong class="primary-font">' + data.nickname + '</strong>' +
-                        '<small class="pull-right text-muted">' +
-                        '<span class="glyphicon glyphicon-time"></span>' +
-                        '12 mins ago' +
-                        '</small>' +
-                        '</div>' +
-                        '<p>' + data.msg + '</p>' +
-                        '</div>' +
-                        '</li>');
-                }
-            });
         });
     </script>
 @endsection

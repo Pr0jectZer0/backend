@@ -97,3 +97,14 @@ Route::get('/user/game/list', [
     'uses' => 'UserController@showGames',
     'middleware' => 'auth.jwt'
 ]);
+
+Route::get('messages/{id}', [
+    'uses' =>  'ChatsController@fetchMessages',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('messages/{id}', [
+    'uses' =>  'ChatsController@sendMessage',
+    'middleware' => 'auth.jwt'
+]);
+
