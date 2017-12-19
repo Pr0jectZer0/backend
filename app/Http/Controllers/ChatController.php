@@ -22,7 +22,7 @@ class ChatController extends Controller
             return response()->json(['message' => 'Keine Nachrichten vorhanden.'], 200);
         }else{
 
-            dd($chatRoom);
+            $chatRoom = $chatRoom->first();
 
             $message = Message::where('chatroom_id', $chatRoom->chatroom_id)->get();
             return response()->json(['message' => $message], 200);
