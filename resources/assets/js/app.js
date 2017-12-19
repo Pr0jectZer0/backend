@@ -26,24 +26,15 @@ const app = new Vue({
     created() {
         this.fetchMessages();
 
-        window.Echo = new Echo({
-            broadcaster: 'pusher',
-            auth:
-                {
-                    headers:
-                        {
-                            'Authorization': 'Bearer yJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc'
-                        }
-                }
-        });
-
-        window.Echo.private('https://pr0jectzer0.ml/chat.1')
+        Echo.private('https://pr0jectzer0.ml/chat.1')
             .listen('MessageSent', (e) => {
             this.messages.push({
             message: e.message.message,
             user: e.user
         });
     });
+
+        Echo.connector.pusher.config.auth.headers['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc';
     },
 
     methods: {
