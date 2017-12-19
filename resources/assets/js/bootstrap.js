@@ -13,6 +13,8 @@ try {
     require('bootstrap-sass');
 } catch (e) {}
 
+window.Vue = require('vue');
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -43,6 +45,7 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
+import Pusher from 'pusher-js'
 import Echo from "laravel-echo"
 
 window.Echo = new Echo({

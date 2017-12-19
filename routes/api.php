@@ -99,12 +99,12 @@ Route::get('/user/game/list', [
 ]);
 
 Route::get('messages/{id}', [
-    'uses' =>  'ChatsController@fetchMessages',
+    'uses' =>  'ChatController@fetchMessages',
     'middleware' => 'auth.jwt'
 ]);
 
 Route::post('messages/{id}', [
-    'uses' =>  'ChatsController@sendMessage',
+    'uses' =>  'ChatController@sendMessage',
     'middleware' => 'auth.jwt'
 ]);
 
