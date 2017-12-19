@@ -1122,14 +1122,14 @@ var app = new Vue({
         fetchMessages: function fetchMessages() {
             var _this2 = this;
 
-            axios.get('https://pr0jectzer0.ml/api/messages/1').then(function (response) {
+            axios.get('https://pr0jectzer0.ml/api/messages/1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc').then(function (response) {
                 _this2.messages = response.data;
             });
         },
         addMessage: function addMessage(message) {
             this.messages.push(message);
 
-            axios.post('https://pr0jectzer0.ml/api/messages/1', message).then(function (response) {});
+            axios.post('https://pr0jectzer0.ml/api/messages/1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc', message).then(function (response) {});
         }
     }
 });

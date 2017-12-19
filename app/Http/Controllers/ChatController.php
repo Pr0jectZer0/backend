@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ChatRoom;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ChatController extends Controller
 {
