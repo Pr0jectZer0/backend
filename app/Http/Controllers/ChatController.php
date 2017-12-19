@@ -17,10 +17,7 @@ class ChatController extends Controller
         $user = JWTAuth::toUser($request->input('token'));
         $chatUser = User::findOrfail($user_id);
 
-        $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])
-            ->groupBy('user_id')
-            ->orderBy('chatroom_id', 'asc')
-            ->get();
+        $chatRoom = ChatRoom::where('user_id', $user_id)->where('user_id', $user->id)->get();
 
         dd($chatRoom);
 
