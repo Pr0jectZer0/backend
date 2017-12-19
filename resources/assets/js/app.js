@@ -26,7 +26,7 @@ const app = new Vue({
     created() {
         this.fetchMessages();
 
-        Echo.private('https://pr0jectzer0.ml/chat.1')
+        Echo.private('https://pr0jectzer0.ml/chat.2')
             .listen('MessageSent', (e) => {
             this.messages.push({
             message: e.message.message,
@@ -39,14 +39,14 @@ const app = new Vue({
 
     methods: {
         fetchMessages() {
-            axios.get('https://pr0jectzer0.ml/api/messages/1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc').then(response => {
+            axios.get('https://pr0jectzer0.ml/api/messages/2?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc').then(response => {
                 this.messages = response.data;
         });
         },
         addMessage(message) {
             this.messages.push(message);
 
-            axios.post('https://pr0jectzer0.ml/api/messages/1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc', message).then(response => {});
+            axios.post('https://pr0jectzer0.ml/api/messages/2?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc', message).then(response => {});
         }
     }
 });

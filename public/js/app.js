@@ -1109,7 +1109,7 @@ var app = new Vue({
 
         this.fetchMessages();
 
-        Echo.private('https://pr0jectzer0.ml/chat.1').listen('MessageSent', function (e) {
+        Echo.private('https://pr0jectzer0.ml/chat.2').listen('MessageSent', function (e) {
             _this.messages.push({
                 message: e.message.message,
                 user: e.user
@@ -1124,14 +1124,14 @@ var app = new Vue({
         fetchMessages: function fetchMessages() {
             var _this2 = this;
 
-            axios.get('https://pr0jectzer0.ml/api/messages/1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc').then(function (response) {
+            axios.get('https://pr0jectzer0.ml/api/messages/2?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc').then(function (response) {
                 _this2.messages = response.data;
             });
         },
         addMessage: function addMessage(message) {
             this.messages.push(message);
 
-            axios.post('https://pr0jectzer0.ml/api/messages/1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc', message).then(function (response) {});
+            axios.post('https://pr0jectzer0.ml/api/messages/2?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc', message).then(function (response) {});
         }
     }
 });
