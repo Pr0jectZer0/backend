@@ -12,7 +12,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ChatController extends Controller
 {
-    public function getPrivateChatRoom(Request $request, $user_id){
+    public function getPrivateChatRoom(Request $request, $user_id)
+    {
 
         $user = JWTAuth::toUser($request->input('token'));
         $chatUser = User::findOrfail($user_id);
@@ -20,17 +21,16 @@ class ChatController extends Controller
         $chatRoomFriend = ChatRoom::where('user_id', $user_id)->get(['chatroom_id']);
         $chatRoomMe = ChatRoom::where('user_id', $user->id)->get(['chatroom_id']);
 
-
-
+        $chatRoomId = array_intersect($chatRoomFriend, $chatRoomMe);
 
         //$chatRoom = $chatRoom->where('user_id', $user->id);
 
-        dd($chatRoomMe);
+        dd($chatRoomId);
 
         if (count($chatRoom) != 2) {
             $chatRoom = ChatRoom::orderBy('id', 'desc')->get();
 
-            if (count($chatRoom) != 0){
+            if (count($chatRoom) != 0) {
                 $chatRoom = $chatRoom->first();
                 $lastId = $chatRoom->chatroom_id;
                 $lastId++;
@@ -49,7 +49,7 @@ class ChatController extends Controller
             $chatRoom->user_id = $user->id;
             $chatRoom->status = 1;
             $chatRoom->save();
-        }else{
+        } else {
             $chatRoom = $chatRoom->first();
         }
 
@@ -76,6 +76,6 @@ class ChatController extends Controller
 
         broadcast(new MessageSent($user, $message))->toOthers();
 
-       return response()->json(['message' => 'Nachricht wurde gesendet.'], 201);
+        return response()->json(['message' => 'Nachricht wurde gesendet.'], 201);
     }
 }
