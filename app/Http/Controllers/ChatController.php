@@ -23,9 +23,11 @@ class ChatController extends Controller
             ->get();
 
         if (count($chatRoom) != 2) {
-            $lastId = ChatRoom::orderBy('id', 'desc')->first();
+            $chatRoom = ChatRoom::orderBy('id', 'desc')->get();
 
-            if ($lastId) {
+            if (count($chatRoom) != 0){
+                $chatRoom = $chatRoom->first();
+                $lastId = $chatRoom->chatroom_id;
                 $lastId++;
             } else {
                 $lastId = 0;
