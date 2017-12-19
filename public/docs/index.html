@@ -169,6 +169,16 @@ $.ajax(settings).done(function (response) {
             "geheimantwort": null,
             "created_at": "2017-12-05 17:59:37",
             "updated_at": "2017-12-05 17:59:37"
+        },
+        {
+            "id": 3,
+            "name": "test123",
+            "alter_jahre": null,
+            "email": "tessdafsadt@tesst.de",
+            "geheimfrage": null,
+            "geheimantwort": null,
+            "created_at": "2017-12-05 17:59:37",
+            "updated_at": "2017-12-05 17:59:37"
         }
     ]
 }</code></pre>
@@ -790,6 +800,89 @@ $.ajax(settings).done(function (response) {
 <p><code>GET api/user/game/list</code></p>
 <p><code>HEAD api/user/game/list</code></p>
 <!-- END_b620ccb3486c6181af93a3dfc6793d6f -->
+<!-- START_fb9d2c07c967699cf37144b4855759c3 -->
+<h2>api/chatroom/{user_id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://localhost/api/chatroom/{user_id}" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/chatroom/{user_id}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "error": "token_not_provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/chatroom/{user_id}</code></p>
+<p><code>HEAD api/chatroom/{user_id}</code></p>
+<!-- END_fb9d2c07c967699cf37144b4855759c3 -->
+<!-- START_b93789cddec054a9c95d51214efd7740 -->
+<h2>api/chatroom/{chatroom_id}/messages</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://localhost/api/chatroom/{chatroom_id}/messages" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/chatroom/{chatroom_id}/messages",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "error": "token_not_provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/chatroom/{chatroom_id}/messages</code></p>
+<p><code>HEAD api/chatroom/{chatroom_id}/messages</code></p>
+<!-- END_b93789cddec054a9c95d51214efd7740 -->
+<!-- START_48010a061a0407a20ef00eab261b0584 -->
+<h2>api/chatroom/{chatroom_id}/messages</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost/api/chatroom/{chatroom_id}/messages" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost/api/chatroom/{chatroom_id}/messages",
+    "method": "POST",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/chatroom/{chatroom_id}/messages</code></p>
+<!-- END_48010a061a0407a20ef00eab261b0584 -->
       </div>
       <div class="dark-box">
                         <div class="lang-selector">
