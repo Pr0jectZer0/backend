@@ -30,7 +30,8 @@
     var channel = pusher.subscribe('private-chat.1');
 
     channel.bind('App\\Events\\MessageSent', function(data) {
-        alert(data.message); //Neue Nachricht bekommen
+        alert("Neue Nachricht erhalten");
+        console.log(data); //Neue Nachricht bekommen
     });
 </script>
 </body>
