@@ -12,10 +12,7 @@
                         <chat-messages :messages="messages"></chat-messages>
                     </div>
                     <div class="panel-footer">
-                        <chat-form
-                                v-on:messagesent="addMessage"
-                                :user="{{ \App\User::find(1) }}"
-                        ></chat-form>
+
                     </div>
                 </div>
             </div>
