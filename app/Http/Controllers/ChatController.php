@@ -18,9 +18,9 @@ class ChatController extends Controller
 
         $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])->get();
 
-        if(count($chatRoom) != 2){
+        if (count($chatRoom) != 2) {
             return response()->json(['message' => 'Keine Nachrichten vorhanden.'], 200);
-        }else{
+        } else {
 
             $chatRoom = $chatRoom->first();
 
@@ -34,25 +34,27 @@ class ChatController extends Controller
         $user = JWTAuth::toUser($request->input('token'));
         $chatUser = User::findOrfail($id);
 
-        $chatRoom = ChatRoom::where('user_id', $user->id)->where('user_id', $chatUser->id)->get();
+        $chatRoom = ChatRoom::whereIn('user_id', [$user->id, $chatUser->id])->get();
 
-        if(count($chatRoom) != 2){
+        if (count($chatRoom) != 2) {
             $lastId = ChatRoom::orderBy('id', 'desc')->first();
 
-            if($lastId){
+            if ($lastId) {
                 $lastId++;
-            }else{
+            } else {
                 $lastId = 1;
             }
 
             $chatRoom = new ChatRoom();
             $chatRoom->chatroom_id = $lastId;
             $chatRoom->user_id = $chatUser->id;
+            $chatRoom->status = 1;
             $chatRoom->save();
 
             $chatRoom = new ChatRoom();
             $chatRoom->chatroom_id = $lastId;
             $chatRoom->user_id = $user->id;
+            $chatRoom->status = 1;
             $chatRoom->save();
         }
 
