@@ -56,6 +56,8 @@ class ChatController extends Controller
             $chatRoom->user_id = $user->id;
             $chatRoom->status = 1;
             $chatRoom->save();
+        }else{
+            $chatRoom = $chatRoom->first();
         }
 
         $message = $user->messages()->create([
