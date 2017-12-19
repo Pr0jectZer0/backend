@@ -17,10 +17,15 @@ class ChatController extends Controller
         $user = JWTAuth::toUser($request->input('token'));
         $chatUser = User::findOrfail($user_id);
 
-        $chatRoom = ChatRoom::where('user_id', $user_id)->get();
+        $chatRoomFriend = ChatRoom::where('user_id', $user_id)->get('chatroom_id');
+        $chatRoomMe = ChatRoom::where('user_id', $user->id)->get('chatroom_id');
+
+
+
+
         //$chatRoom = $chatRoom->where('user_id', $user->id);
 
-        dd($chatRoom);
+        dd($chatRoomMe);
 
         if (count($chatRoom) != 2) {
             $chatRoom = ChatRoom::orderBy('id', 'desc')->get();
