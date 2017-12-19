@@ -21,10 +21,6 @@ class ChatController extends Controller
         $chatRoomFriend = ChatRoom::where('user_id', $user_id)->pluck('chatroom_id')->toArray();;
         $chatRoomMe = ChatRoom::where('user_id', $user->id)->pluck('chatroom_id')->toArray();
 
-        print_r($chatRoomFriend);
-        print_r($chatRoomMe);
-
-        die;
 
         $chatRoomId = array_intersect($chatRoomFriend, $chatRoomMe);
 
