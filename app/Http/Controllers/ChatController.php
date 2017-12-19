@@ -22,6 +22,8 @@ class ChatController extends Controller
             ->orderBy('chatroom_id', 'asc')
             ->get();
 
+        dd($chatRoom);
+
         if (count($chatRoom) != 2) {
             $chatRoom = ChatRoom::orderBy('id', 'desc')->get();
 
