@@ -24,11 +24,7 @@ class ChatController extends Controller
 
         $chatRoomId = array_intersect($chatRoomFriend, $chatRoomMe);
 
-        //$chatRoom = $chatRoom->where('user_id', $user->id);
-
-        dd($chatRoomId);
-
-        if (count($chatRoomId) != 2) {
+        if (count($chatRoomId) != 1) {
             $chatRoom = ChatRoom::orderBy('id', 'desc')->get();
 
             if (count($chatRoom) != 0) {
@@ -50,11 +46,11 @@ class ChatController extends Controller
             $chatRoom->user_id = $user->id;
             $chatRoom->status = 1;
             $chatRoom->save();
-        } else {
-            $chatRoom = $chatRoom->first();
+
+            $chatRoomId = $lastId;
         }
 
-        return response()->json(['chatroom' => $chatRoom->chatroom_id], 200);
+        return response()->json(['chatroom' => $chatRoomId], 200);
     }
 
     public function fetchMessages(Request $request, $chatroom_id)
