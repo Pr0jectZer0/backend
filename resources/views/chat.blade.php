@@ -18,18 +18,21 @@
     //instantiate a Pusher object with our Credential's key
     var pusher = new Pusher('60b89a1e182fd4635842', {
         cluster: 'eu',
-        encrypted: true
+        encrypted: true,
+        auth: {
+            headers: {
+                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc'
+            }
+        }
     });
 
-    pusher.config.auth.headers['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHBzOi8vcHIwamVjdHplcjAubWwvYXBpL3VzZXIvbG9naW4iLCJpYXQiOjE1MTM2ODgwNzEsImV4cCI6MTUxMzY5MTY3MSwibmJmIjoxNTEzNjg4MDcxLCJqdGkiOiJXQlJjZkdWcmVsZHZjMXE1In0.jiRlAAVAGs2OiXCXc0MStUoAywUYffbpHWlxgXHZ6qc';
-
     //Subscribe to the channel we specified in our Laravel Event
-    var channel = pusher.private('https://pr0jectzer0.ml/chat.2');
+    var channel = pusher.subscribe('https://pr0jectzer0.ml/chat.2');
 
     //Bind a function to a Event (the full Laravel class)
     channel.bind('App\\Events\\MessageSent', addMessage);
 
-    function addMessage(data) {
+    function addMessage() {
        alert("New Message send!")
     }
 </script>
