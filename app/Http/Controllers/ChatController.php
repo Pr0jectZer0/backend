@@ -18,7 +18,7 @@ class ChatController extends Controller
         $chatUser = User::findOrfail($user_id);
 
         $chatRoom = ChatRoom::where('user_id', $user_id)->get();
-        $chatRoom = $chatRoom->where('user_id', $user->id);
+        //$chatRoom = $chatRoom->where('user_id', $user->id);
 
         dd($chatRoom);
 
