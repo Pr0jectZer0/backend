@@ -26,7 +26,7 @@ Welcome to the generated API reference.
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/user/login" \
+curl -X POST "http://project-zero.local/api/user/login" \
 -H "Accept: application/json"
 ```
 
@@ -34,7 +34,7 @@ curl -X POST "http://localhost/api/user/login" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user/login",
+    "url": "http://project-zero.local/api/user/login",
     "method": "POST",
     "headers": {
         "accept": "application/json"
@@ -59,7 +59,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/user" \
+curl -X POST "http://project-zero.local/api/user" \
 -H "Accept: application/json" \
     -d "name"="unde" \
     -d "email"="felipa52@example.org" \
@@ -71,7 +71,7 @@ curl -X POST "http://localhost/api/user" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user",
+    "url": "http://project-zero.local/api/user",
     "method": "POST",
     "data": {
         "name": "unde",
@@ -108,7 +108,7 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/users" \
+curl -X GET "http://project-zero.local/api/users" \
 -H "Accept: application/json"
 ```
 
@@ -116,7 +116,7 @@ curl -X GET "http://localhost/api/users" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/users",
+    "url": "http://project-zero.local/api/users",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -152,6 +152,16 @@ $.ajax(settings).done(function (response) {
             "geheimantwort": null,
             "created_at": "2017-12-05 17:59:37",
             "updated_at": "2017-12-05 17:59:37"
+        },
+        {
+            "id": 4,
+            "name": "Bra",
+            "alter_jahre": null,
+            "email": "test@test.de",
+            "geheimfrage": null,
+            "geheimantwort": null,
+            "created_at": "2018-01-09 12:32:53",
+            "updated_at": "2018-01-09 12:32:53"
         }
     ]
 }
@@ -171,7 +181,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/user/{id}" \
+curl -X GET "http://project-zero.local/api/user/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -179,7 +189,7 @@ curl -X GET "http://localhost/api/user/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user/{id}",
+    "url": "http://project-zero.local/api/user/{id}",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -222,7 +232,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X PUT "http://localhost/api/user/{id}" \
+curl -X PUT "http://project-zero.local/api/user/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -230,7 +240,7 @@ curl -X PUT "http://localhost/api/user/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user/{id}",
+    "url": "http://project-zero.local/api/user/{id}",
     "method": "PUT",
     "headers": {
         "accept": "application/json"
@@ -255,7 +265,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X DELETE "http://localhost/api/user/{id}" \
+curl -X DELETE "http://project-zero.local/api/user/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -263,7 +273,7 @@ curl -X DELETE "http://localhost/api/user/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user/{id}",
+    "url": "http://project-zero.local/api/user/{id}",
     "method": "DELETE",
     "headers": {
         "accept": "application/json"
@@ -288,7 +298,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/friends" \
+curl -X GET "http://project-zero.local/api/friends" \
 -H "Accept: application/json"
 ```
 
@@ -296,7 +306,7 @@ curl -X GET "http://localhost/api/friends" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/friends",
+    "url": "http://project-zero.local/api/friends",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -330,7 +340,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/friend/add" \
+curl -X POST "http://project-zero.local/api/friend/add" \
 -H "Accept: application/json" \
     -d "id"="illo" \
 
@@ -340,7 +350,7 @@ curl -X POST "http://localhost/api/friend/add" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/friend/add",
+    "url": "http://project-zero.local/api/friend/add",
     "method": "POST",
     "data": {
         "id": "illo"
@@ -373,7 +383,7 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X DELETE "http://localhost/api/friend/remove/{id}" \
+curl -X DELETE "http://project-zero.local/api/friend/remove/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -381,7 +391,7 @@ curl -X DELETE "http://localhost/api/friend/remove/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/friend/remove/{id}",
+    "url": "http://project-zero.local/api/friend/remove/{id}",
     "method": "DELETE",
     "headers": {
         "accept": "application/json"
@@ -406,7 +416,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/game" \
+curl -X POST "http://project-zero.local/api/game" \
 -H "Accept: application/json" \
     -d "id_genre"="3" \
     -d "id_publisher"="2" \
@@ -419,7 +429,7 @@ curl -X POST "http://localhost/api/game" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/game",
+    "url": "http://project-zero.local/api/game",
     "method": "POST",
     "data": {
         "id_genre": "3",
@@ -458,7 +468,7 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/games" \
+curl -X GET "http://project-zero.local/api/games" \
 -H "Accept: application/json"
 ```
 
@@ -466,7 +476,7 @@ curl -X GET "http://localhost/api/games" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/games",
+    "url": "http://project-zero.local/api/games",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -510,7 +520,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/game/{id}" \
+curl -X GET "http://project-zero.local/api/game/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -518,7 +528,7 @@ curl -X GET "http://localhost/api/game/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/game/{id}",
+    "url": "http://project-zero.local/api/game/{id}",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -552,7 +562,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X PUT "http://localhost/api/game/{id}" \
+curl -X PUT "http://project-zero.local/api/game/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -560,7 +570,7 @@ curl -X PUT "http://localhost/api/game/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/game/{id}",
+    "url": "http://project-zero.local/api/game/{id}",
     "method": "PUT",
     "headers": {
         "accept": "application/json"
@@ -585,7 +595,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X DELETE "http://localhost/api/game/{id}" \
+curl -X DELETE "http://project-zero.local/api/game/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -593,7 +603,7 @@ curl -X DELETE "http://localhost/api/game/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/game/{id}",
+    "url": "http://project-zero.local/api/game/{id}",
     "method": "DELETE",
     "headers": {
         "accept": "application/json"
@@ -618,7 +628,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/publisher" \
+curl -X GET "http://project-zero.local/api/publisher" \
 -H "Accept: application/json"
 ```
 
@@ -626,7 +636,7 @@ curl -X GET "http://localhost/api/publisher" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/publisher",
+    "url": "http://project-zero.local/api/publisher",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -697,7 +707,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/genre" \
+curl -X GET "http://project-zero.local/api/genre" \
 -H "Accept: application/json"
 ```
 
@@ -705,7 +715,7 @@ curl -X GET "http://localhost/api/genre" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/genre",
+    "url": "http://project-zero.local/api/genre",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -788,7 +798,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/user/game/add" \
+curl -X POST "http://project-zero.local/api/user/game/add" \
 -H "Accept: application/json" \
     -d "id"="perferendis" \
 
@@ -798,7 +808,7 @@ curl -X POST "http://localhost/api/user/game/add" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user/game/add",
+    "url": "http://project-zero.local/api/user/game/add",
     "method": "POST",
     "data": {
         "id": "perferendis"
@@ -831,7 +841,7 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X DELETE "http://localhost/api/user/game/remove/{id}" \
+curl -X DELETE "http://project-zero.local/api/user/game/remove/{id}" \
 -H "Accept: application/json"
 ```
 
@@ -839,7 +849,7 @@ curl -X DELETE "http://localhost/api/user/game/remove/{id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user/game/remove/{id}",
+    "url": "http://project-zero.local/api/user/game/remove/{id}",
     "method": "DELETE",
     "headers": {
         "accept": "application/json"
@@ -864,7 +874,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/user/game/list" \
+curl -X GET "http://project-zero.local/api/user/game/list" \
 -H "Accept: application/json"
 ```
 
@@ -872,7 +882,7 @@ curl -X GET "http://localhost/api/user/game/list" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/user/game/list",
+    "url": "http://project-zero.local/api/user/game/list",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -906,7 +916,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/chatroom/{user_id}" \
+curl -X GET "http://project-zero.local/api/chatroom/{user_id}" \
 -H "Accept: application/json"
 ```
 
@@ -914,7 +924,7 @@ curl -X GET "http://localhost/api/chatroom/{user_id}" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/chatroom/{user_id}",
+    "url": "http://project-zero.local/api/chatroom/{user_id}",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -948,7 +958,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X GET "http://localhost/api/chatroom/{chatroom_id}/messages" \
+curl -X GET "http://project-zero.local/api/chatroom/{chatroom_id}/messages" \
 -H "Accept: application/json"
 ```
 
@@ -956,7 +966,7 @@ curl -X GET "http://localhost/api/chatroom/{chatroom_id}/messages" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/chatroom/{chatroom_id}/messages",
+    "url": "http://project-zero.local/api/chatroom/{chatroom_id}/messages",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -990,7 +1000,7 @@ $.ajax(settings).done(function (response) {
 > Example request:
 
 ```bash
-curl -X POST "http://localhost/api/chatroom/{chatroom_id}/messages" \
+curl -X POST "http://project-zero.local/api/chatroom/{chatroom_id}/messages" \
 -H "Accept: application/json"
 ```
 
@@ -998,7 +1008,7 @@ curl -X POST "http://localhost/api/chatroom/{chatroom_id}/messages" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost/api/chatroom/{chatroom_id}/messages",
+    "url": "http://project-zero.local/api/chatroom/{chatroom_id}/messages",
     "method": "POST",
     "headers": {
         "accept": "application/json"
@@ -1016,4 +1026,434 @@ $.ajax(settings).done(function (response) {
 
 
 <!-- END_48010a061a0407a20ef00eab261b0584 -->
+
+<!-- START_551da87187657555319a862580d988df -->
+## api/note
+
+> Example request:
+
+```bash
+curl -X POST "http://project-zero.local/api/note" \
+-H "Accept: application/json" \
+    -d "titel"="placeat" \
+    -d "text"="placeat" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/note",
+    "method": "POST",
+    "data": {
+        "titel": "placeat",
+        "text": "placeat"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/note`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    titel | string |  required  | Maximum: `255`
+    text | string |  required  | 
+
+<!-- END_551da87187657555319a862580d988df -->
+
+<!-- START_41f69eb07e90539aee45dad827b205be -->
+## api/notes
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/notes" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/notes",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/notes`
+
+`HEAD api/notes`
+
+
+<!-- END_41f69eb07e90539aee45dad827b205be -->
+
+<!-- START_e0c826920e486decc00aafae43cfdcee -->
+## api/note/{id}
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/note/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/note/{id}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/note/{id}`
+
+`HEAD api/note/{id}`
+
+
+<!-- END_e0c826920e486decc00aafae43cfdcee -->
+
+<!-- START_574eb03c7487fd3b774a8fdd1b988fc9 -->
+## api/group
+
+> Example request:
+
+```bash
+curl -X POST "http://project-zero.local/api/group" \
+-H "Accept: application/json" \
+    -d "name"="voluptas" \
+    -d "beschreibung"="voluptas" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group",
+    "method": "POST",
+    "data": {
+        "name": "voluptas",
+        "beschreibung": "voluptas"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/group`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    name | string |  required  | Maximum: `255`
+    beschreibung | string |  required  | 
+
+<!-- END_574eb03c7487fd3b774a8fdd1b988fc9 -->
+
+<!-- START_a8c7b99a1af668700e8e56766ac3cbc3 -->
+## api/group/{id}
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{id}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{id}`
+
+`HEAD api/group/{id}`
+
+
+<!-- END_a8c7b99a1af668700e8e56766ac3cbc3 -->
+
+<!-- START_4ddb3558ff0bfadbb9f97962d65e45be -->
+## api/group/{id}/add_user
+
+> Example request:
+
+```bash
+curl -X POST "http://project-zero.local/api/group/{id}/add_user" \
+-H "Accept: application/json" \
+    -d "id"="non" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{id}/add_user",
+    "method": "POST",
+    "data": {
+        "id": "non"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/group/{id}/add_user`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    id | string |  required  | 
+
+<!-- END_4ddb3558ff0bfadbb9f97962d65e45be -->
+
+<!-- START_63e8408b172f77fcac5d4443885920e2 -->
+## api/group/{id}/remove_user
+
+> Example request:
+
+```bash
+curl -X POST "http://project-zero.local/api/group/{id}/remove_user" \
+-H "Accept: application/json" \
+    -d "id"="illum" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{id}/remove_user",
+    "method": "POST",
+    "data": {
+        "id": "illum"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/group/{id}/remove_user`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    id | string |  required  | 
+
+<!-- END_63e8408b172f77fcac5d4443885920e2 -->
+
+<!-- START_3d3bddf9ae6826ac3f4b234b581e8de8 -->
+## api/group/requests
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/requests" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/requests",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/requests`
+
+`HEAD api/group/requests`
+
+
+<!-- END_3d3bddf9ae6826ac3f4b234b581e8de8 -->
+
+<!-- START_d1ec97f4d521d6188febe8b9518fefbb -->
+## api/group/{id}/accept
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{id}/accept" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{id}/accept",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{id}/accept`
+
+`HEAD api/group/{id}/accept`
+
+
+<!-- END_d1ec97f4d521d6188febe8b9518fefbb -->
+
+<!-- START_4ff3adf2b4cb250d8116374de5cad470 -->
+## api/group/{id}/decline
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{id}/decline" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{id}/decline",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{id}/decline`
+
+`HEAD api/group/{id}/decline`
+
+
+<!-- END_4ff3adf2b4cb250d8116374de5cad470 -->
 

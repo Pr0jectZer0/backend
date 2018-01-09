@@ -15,6 +15,7 @@ class Notiz extends Migration
     {
         Schema::create('notiz', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_user');
             $table->string('titel');
             $table->text('text');
             $table->timestamps();

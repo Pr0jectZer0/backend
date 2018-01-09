@@ -14,6 +14,7 @@ class GruppeUser extends Migration
     public function up()
     {
         Schema::create('gruppe_user', function (Blueprint $table) {
+            $table->increments('id');
             $table->increments('id_gruppe');
             $table->integer('id_user');
             $table->string('rolle');

@@ -99,17 +99,78 @@ Route::get('/user/game/list', [
 ]);
 
 Route::get('/chatroom/{user_id}', [
-    'uses' =>  'ChatController@getPrivateChatRoom',
+    'uses' => 'ChatController@getPrivateChatRoom',
     'middleware' => 'auth.jwt'
 ]);
 
 Route::get('/chatroom/{chatroom_id}/messages', [
-    'uses' =>  'ChatController@fetchMessages',
+    'uses' => 'ChatController@fetchMessages',
     'middleware' => 'auth.jwt'
 ]);
 
 Route::post('/chatroom/{chatroom_id}/messages', [
-    'uses' =>  'ChatController@sendMessage',
+    'uses' => 'ChatController@sendMessage',
     'middleware' => 'auth.jwt'
 ]);
+
+Route::post('/note', [
+    'uses' => 'NotizController@store',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/notes', [
+    'uses' => 'NotizController@getAll',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/note/{id}', [
+    'uses' => 'NotizController@get',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::put('/user/{id}', [
+    'uses' => 'NotizController@update',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::delete('/user/{id}', [
+    'uses' => 'NotizController@delete',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/group', [
+    'uses' => 'GruppenController@create',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{id}', [
+    'uses' => 'GruppenController@get',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/group/{id}/add_user', [
+    'uses' => 'GruppenController@addUser',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/group/{id}/remove_user', [
+    'uses' => 'GruppenController@removeUser',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/requests', [
+    'uses' => 'GruppenController@allRequests',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{id}/accept', [
+    'uses' => 'GruppenController@acceptRequest',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{id}/decline', [
+    'uses' => 'GruppenController@declineRequest',
+    'middleware' => 'auth.jwt'
+]);
+
 
