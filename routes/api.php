@@ -128,7 +128,7 @@ Route::get('/note/{id}', [
     'middleware' => 'auth.jwt'
 ]);
 
-Route::put('/user/{id}', [
+Route::put('/note/{id}', [
     'uses' => 'NotizController@update',
     'middleware' => 'auth.jwt'
 ]);
@@ -173,4 +173,7 @@ Route::get('/group/{id}/decline', [
     'middleware' => 'auth.jwt'
 ]);
 
-
+Route::get('/groups', [
+    'uses' => 'GruppenController@getAll',
+    'middleware' => 'auth.jwt'
+]);

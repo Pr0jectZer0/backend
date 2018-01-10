@@ -14,8 +14,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class GruppenController extends Controller
 {
 
+    /**
+     * Gruppe erstellen
+     */
     public function create(GroupRequest $request)
     {
+
         $user = JWTAuth::toUser($request->input('token'));
 
         $group = Group::create([
@@ -35,8 +39,13 @@ class GruppenController extends Controller
         return Response::json($groupFinal, 201);
     }
 
+    /**
+     * Gruppe by id
+     */
+
     public function get(Request $request, $id)
     {
+
         $user = JWTAuth::toUser($request->input('token'));
 
         $group = Group::with('users.user')->find($id);
@@ -51,8 +60,14 @@ class GruppenController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Gruppe User hinzufügen (anfrage)
+     */
+
     public function addUser(UserIdRequest $request, $id)
     {
+
+
         $user = JWTAuth::toUser($request->input('token'));
 
         $group = Group::find($id);
@@ -83,8 +98,13 @@ class GruppenController extends Controller
 
     }
 
+    /**
+     * Gruppe User entfernen
+     */
     public function removeUser(UserIdRequest $request, $id)
     {
+
+
         $user = JWTAuth::toUser($request->input('token'));
 
         $group = Group::find($id);
@@ -114,32 +134,51 @@ class GruppenController extends Controller
 
     }
 
+    /**
+     * Alle Grupen anfragen (noch nicht fertig)
+     */
     public function allRequests(Request $request){
+
+
 
     }
 
+    /**
+     * Gruppen anfrage akzeptieren (noch nicht fertig)
+     */
     public function acceptRequest(Request $request, $id)
     {
 
+
+
     }
 
+    /**
+     * Gruppen anfrage ablehnen (noch nicht fertig)
+     */
     public function declineRequest(Request $request, $id)
     {
 
+
     }
+
+    /**
+     * Gruppen löschen (noch nicht fertig)
+     */
 
     public function delete($id)
     {
 
+
     }
 
+    /**
+     * Alle Gruppen des Benutzers (noch nicht fertig)
+     */
     public function getAll()
     {
-        $notes = Note::all();
-        $response = [
-            'notes' => $notes
-        ];
-        return response()->json($response, 200);
+
+
     }
 
 }

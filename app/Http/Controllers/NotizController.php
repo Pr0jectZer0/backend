@@ -10,8 +10,13 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class NotizController extends Controller
 {
+
+    /**
+     * Notiz erstellen
+     */
     public function store(NoteRequest $request)
     {
+
 
         $user = JWTAuth::toUser($request->input('token'));
 
@@ -26,10 +31,15 @@ class NotizController extends Controller
     }
 
 
+    /**
+     * Notiz get by id
+     */
     public function get(Request $request, $id)
     {
 
-        $note = Note::find($id);
+
+
+        $note = Note::with('user')->find($id);
 
         if (!$note) {
             return response()->json(['message' => 'Notiz wurde nicht gefunden.'], 404);
@@ -41,29 +51,51 @@ class NotizController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Notiz updaten/ändern
+     */
+
     public function update(Request $request, $id)
     {
-        $note = Note::find($id);
+
+
+        $note = Note::with('user')->find($id);
 
         if (!$note) {
             return response()->json(['message' => 'Notiz wurde nicht gefunden.'], 404);
         }
 
-        $note->name = $request->input('name');
+        if($request->input('titel') != "") {
+            $note->titel = $request->input('titel');
+        }
+        if($request->input('text') != "") {
+            $note->text = $request->input('text');
+        }
         $note->save();
         return response()->json(['note' => $note], 200);
     }
 
+    /**
+     * Notiz löschen
+     */
     public function delete($id)
     {
+
+
         $note = Note::findOrfail($id);
         $note->delete();
         return response()->json(['message' => 'Notiz wurde gelöscht.'], 200);
     }
 
+    /**
+     * Alle Notizen vom Benutzer
+     */
+
+
     public function getAll()
     {
-        $notes = Note::all();
+
+        $notes = Note::with('user')->get();
         $response = [
             'notes' => $notes
         ];
