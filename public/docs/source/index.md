@@ -260,7 +260,7 @@ $.ajax(settings).done(function (response) {
 <!-- END_538c59bd7094f21614fa40efbc87039d -->
 
 <!-- START_a1ef15db35f08591deb485d3c5fb9a31 -->
-## Notiz löschen
+## api/user/{id}
 
 > Example request:
 
@@ -1189,6 +1189,39 @@ $.ajax(settings).done(function (response) {
 
 
 <!-- END_e20fab3b528d1e1d3b29e13595eff8be -->
+
+<!-- START_3278d29a5e02d86051f652b278e0becb -->
+## Notiz löschen
+
+> Example request:
+
+```bash
+curl -X DELETE "http://project-zero.local/api/note/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/note/{id}",
+    "method": "DELETE",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`DELETE api/note/{id}`
+
+
+<!-- END_3278d29a5e02d86051f652b278e0becb -->
 
 <!-- START_574eb03c7487fd3b774a8fdd1b988fc9 -->
 ## Gruppe erstellen

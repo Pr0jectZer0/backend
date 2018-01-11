@@ -259,7 +259,7 @@ $.ajax(settings).done(function (response) {
 <p><code>PUT api/user/{id}</code></p>
 <!-- END_538c59bd7094f21614fa40efbc87039d -->
 <!-- START_a1ef15db35f08591deb485d3c5fb9a31 -->
-<h2>Notiz löschen</h2>
+<h2>api/user/{id}</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -1030,6 +1030,29 @@ $.ajax(settings).done(function (response) {
 <h3>HTTP Request</h3>
 <p><code>PUT api/note/{id}</code></p>
 <!-- END_e20fab3b528d1e1d3b29e13595eff8be -->
+<!-- START_3278d29a5e02d86051f652b278e0becb -->
+<h2>Notiz löschen</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "http://project-zero.local/api/note/{id}" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/note/{id}",
+    "method": "DELETE",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/note/{id}</code></p>
+<!-- END_3278d29a5e02d86051f652b278e0becb -->
 <!-- START_574eb03c7487fd3b774a8fdd1b988fc9 -->
 <h2>Gruppe erstellen</h2>
 <blockquote>
