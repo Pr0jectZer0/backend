@@ -158,7 +158,7 @@ Route::post('/group/{id}/remove_user', [
     'middleware' => 'auth.jwt'
 ]);
 
-Route::get('/group/requests', [
+Route::get('/groups/requests', [
     'uses' => 'GruppenController@allRequests',
     'middleware' => 'auth.jwt'
 ]);
@@ -175,5 +175,20 @@ Route::get('/group/{id}/decline', [
 
 Route::get('/groups', [
     'uses' => 'GruppenController@getAll',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::delete('/group/{id}', [
+    'uses' => 'GruppenController@delete',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/attach/note/{note_id}', [
+    'uses' => 'GruppenController@attachNote',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/notes', [
+    'uses' => 'GruppenController@allNotes',
     'middleware' => 'auth.jwt'
 ]);

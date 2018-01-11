@@ -16,8 +16,6 @@ class NotizController extends Controller
      */
     public function store(NoteRequest $request)
     {
-
-
         $user = JWTAuth::toUser($request->input('token'));
 
         $note = Note::create([
@@ -36,9 +34,6 @@ class NotizController extends Controller
      */
     public function get(Request $request, $id)
     {
-
-
-
         $note = Note::with('user')->find($id);
 
         if (!$note) {
@@ -57,18 +52,16 @@ class NotizController extends Controller
 
     public function update(Request $request, $id)
     {
-
-
         $note = Note::with('user')->find($id);
 
         if (!$note) {
             return response()->json(['message' => 'Notiz wurde nicht gefunden.'], 404);
         }
 
-        if($request->input('titel') != "") {
+        if ($request->input('titel') != "") {
             $note->titel = $request->input('titel');
         }
-        if($request->input('text') != "") {
+        if ($request->input('text') != "") {
             $note->text = $request->input('text');
         }
         $note->save();
@@ -80,8 +73,6 @@ class NotizController extends Controller
      */
     public function delete($id)
     {
-
-
         $note = Note::findOrfail($id);
         $note->delete();
         return response()->json(['message' => 'Notiz wurde gelöscht.'], 200);
@@ -90,12 +81,15 @@ class NotizController extends Controller
     /**
      * Alle Notizen vom Benutzer
      */
-
-
-    public function getAll()
+    public function getAll(Request $request)
     {
+        $user = JWTAuth::toUser($request->input('token'));
 
-        $notes = Note::with('user')->get();
+        $notes = Note::with('user')->whereHas('user', function ($query) use ($user) {
+            $query->where('id', $user->id);
+        })->get();
+
+
         $response = [
             'notes' => $notes
         ];

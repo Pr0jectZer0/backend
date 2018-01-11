@@ -1364,13 +1364,13 @@ Parameter | Type | Status | Description
 
 <!-- END_63e8408b172f77fcac5d4443885920e2 -->
 
-<!-- START_3d3bddf9ae6826ac3f4b234b581e8de8 -->
-## Alle Grupen anfragen (noch nicht fertig)
+<!-- START_8763d1a1ce9f093feb734110f9090ed1 -->
+## Alle Grupen anfragen
 
 > Example request:
 
 ```bash
-curl -X GET "http://project-zero.local/api/group/requests" \
+curl -X GET "http://project-zero.local/api/groups/requests" \
 -H "Accept: application/json"
 ```
 
@@ -1378,7 +1378,7 @@ curl -X GET "http://project-zero.local/api/group/requests" \
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://project-zero.local/api/group/requests",
+    "url": "http://project-zero.local/api/groups/requests",
     "method": "GET",
     "headers": {
         "accept": "application/json"
@@ -1399,15 +1399,15 @@ $.ajax(settings).done(function (response) {
 ```
 
 ### HTTP Request
-`GET api/group/requests`
+`GET api/groups/requests`
 
-`HEAD api/group/requests`
+`HEAD api/groups/requests`
 
 
-<!-- END_3d3bddf9ae6826ac3f4b234b581e8de8 -->
+<!-- END_8763d1a1ce9f093feb734110f9090ed1 -->
 
 <!-- START_d1ec97f4d521d6188febe8b9518fefbb -->
-## Gruppen anfrage akzeptieren (noch nicht fertig)
+## Gruppen anfrage akzeptieren
 
 > Example request:
 
@@ -1449,7 +1449,7 @@ $.ajax(settings).done(function (response) {
 <!-- END_d1ec97f4d521d6188febe8b9518fefbb -->
 
 <!-- START_4ff3adf2b4cb250d8116374de5cad470 -->
-## Gruppen anfrage ablehnen (noch nicht fertig)
+## Gruppen anfrage ablehnen
 
 > Example request:
 
@@ -1491,7 +1491,7 @@ $.ajax(settings).done(function (response) {
 <!-- END_4ff3adf2b4cb250d8116374de5cad470 -->
 
 <!-- START_f9e500d28904b7938ffe0c065b031a2c -->
-## Alle Gruppen des Benutzers (noch nicht fertig)
+## Alle Gruppen eines Benutzers
 
 > Example request:
 
@@ -1531,4 +1531,121 @@ $.ajax(settings).done(function (response) {
 
 
 <!-- END_f9e500d28904b7938ffe0c065b031a2c -->
+
+<!-- START_ef1c662d42a966e19b4bfd85f22b69ec -->
+## Gruppen löschen
+
+> Example request:
+
+```bash
+curl -X DELETE "http://project-zero.local/api/group/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{id}",
+    "method": "DELETE",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`DELETE api/group/{id}`
+
+
+<!-- END_ef1c662d42a966e19b4bfd85f22b69ec -->
+
+<!-- START_5f995fdf7acd5363ecb8bfb4762ada10 -->
+## Gruppe Notiz hinzufügen
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{group_id}/attach/note/{note_id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{group_id}/attach/note/{note_id}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{group_id}/attach/note/{note_id}`
+
+`HEAD api/group/{group_id}/attach/note/{note_id}`
+
+
+<!-- END_5f995fdf7acd5363ecb8bfb4762ada10 -->
+
+<!-- START_5d8759de83844c04e2efbaae95f1c7b5 -->
+## Alle Notizen einer Gruppe
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{group_id}/notes" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{group_id}/notes",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{group_id}/notes`
+
+`HEAD api/group/{group_id}/notes`
+
+
+<!-- END_5d8759de83844c04e2efbaae95f1c7b5 -->
 

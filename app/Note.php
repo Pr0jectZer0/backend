@@ -14,4 +14,9 @@ class Note extends Model
         return $this->belongsTo('App\User', 'id_user', 'id');
     }
 
+    public function groups()
+    {
+        return $this->hasMany('App\GroupNote', 'id_gruppe', 'id');
+    }
+
 }

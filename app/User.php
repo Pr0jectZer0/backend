@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function games()
     {
-       return $this->hasManyThrough('App\Game', 'App\UserGame', 'id_user', 'id', 'id');
+        return $this->hasManyThrough('App\Game', 'App\UserGame', 'id_user', 'id', 'id');
     }
 
     public function messages()
@@ -50,6 +50,11 @@ class User extends Authenticatable
     public function chatRooms()
     {
         return $this->hasMany('App\ChatRoom');
+    }
+
+    public function groups()
+    {
+        return $this->hasManyThrough('App\Group', 'App\GroupUser', 'id_user', 'id', 'id');
     }
 
     public function friendList()

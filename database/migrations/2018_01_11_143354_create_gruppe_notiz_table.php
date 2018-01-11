@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class GruppeUser extends Migration
+class CreateGruppeNotizTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class GruppeUser extends Migration
      */
     public function up()
     {
-        Schema::create('gruppe_user', function (Blueprint $table) {
+        Schema::create('gruppe_notiz', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_gruppe');
-            $table->integer('id_user');
-            $table->string('rolle');
+            $table->integer('id_notiz');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class GruppeUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gruppe_user');
+        Schema::dropIfExists('gruppe_notiz');
     }
 }
