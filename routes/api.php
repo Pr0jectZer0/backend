@@ -133,7 +133,7 @@ Route::put('/note/{id}', [
     'middleware' => 'auth.jwt'
 ]);
 
-Route::delete('/user/{id}', [
+Route::delete('/note/{id}', [
     'uses' => 'NotizController@delete',
     'middleware' => 'auth.jwt'
 ]);
