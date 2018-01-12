@@ -10,7 +10,7 @@ class Friend extends Model
 
     protected $appends = ['freundschaft'];
 
-    public function getQuantityAttribute()
+    public function getFreundschaftAttribute()
     {
         if ($this->status == 0) {
             return 'angefragt';

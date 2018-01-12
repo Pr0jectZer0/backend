@@ -39,7 +39,11 @@ class UserController extends Controller
     public function get(Request $request, $id)
     {
 
-        $user = User::find($id);
+        if (!$id) {
+            $user = JWTAuth::toUser($request->input('token'));
+        } else {
+            $user = User::find($id);
+        }
 
         if (!$user) {
             return response()->json(['message' => 'User wurde nicht gefunden.'], 404);
@@ -56,7 +60,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        if (!$id) {
+            $user = JWTAuth::toUser($request->input('token'));
+        } else {
+            $user = User::find($id);
+        }
 
         if (!$user) {
             return response()->json(['message' => 'User wurde nicht gefunden.'], 404);

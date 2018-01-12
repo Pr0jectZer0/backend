@@ -25,7 +25,16 @@ Route::get('/users', [
     'uses' => 'UserController@getAll'
 ]);
 
+Route::get('/user/groups', [
+    'uses' => 'GruppenController@getAllUser',
+    'middleware' => 'auth.jwt'
+]);
+
 Route::get('/user/{id}', [
+    'uses' => 'UserController@get'
+]);
+
+Route::get('/user', [
     'uses' => 'UserController@get'
 ]);
 
@@ -158,48 +167,75 @@ Route::post('/group', [
     'middleware' => 'auth.jwt'
 ]);
 
-Route::get('/group/{id}', [
+Route::get('/group/{group_id}', [
     'uses' => 'GruppenController@get',
     'middleware' => 'auth.jwt'
 ]);
 
-Route::post('/group/{id}/add_user', [
-    'uses' => 'GruppenController@addUser',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::post('/group/{id}/remove_user', [
-    'uses' => 'GruppenController@removeUser',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/groups/requests', [
-    'uses' => 'GruppenController@allRequests',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/group/{id}/accept', [
-    'uses' => 'GruppenController@acceptRequest',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/group/{id}/decline', [
-    'uses' => 'GruppenController@declineRequest',
-    'middleware' => 'auth.jwt'
-]);
 
 Route::get('/groups', [
     'uses' => 'GruppenController@getAll',
     'middleware' => 'auth.jwt'
 ]);
 
-Route::delete('/group/{id}', [
+Route::post('/group/{group_id}/add_user', [
+    'uses' => 'GruppenController@addUser',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/request_access', [
+    'uses' => 'GruppenController@requestAcess',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/group/{group_id}/remove_user', [
+    'uses' => 'GruppenController@removeUser',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/user/groups/requests', [
+    'uses' => 'GruppenController@allRequestsUser',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/user/group/{group_id}/accept', [
+    'uses' => 'GruppenController@acceptRequestUser',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/user/group/{group_id}/decline', [
+    'uses' => 'GruppenController@declineRequestUser',
+    'middleware' => 'auth.jwt'
+]);
+
+
+Route::get('/group/{group_id}/requests', [
+    'uses' => 'GruppenController@allRequestsGroup',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/accept/{user_id}', [
+    'uses' => 'GruppenController@acceptRequestGroup',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/decline/{user_id}', [
+    'uses' => 'GruppenController@declineRequestGroup',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::delete('/group/{group_id}', [
     'uses' => 'GruppenController@delete',
     'middleware' => 'auth.jwt'
 ]);
 
 Route::get('/group/{group_id}/attach/note/{note_id}', [
     'uses' => 'GruppenController@attachNote',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/detach/note/{note_id}', [
+    'uses' => 'GruppenController@detachNote',
     'middleware' => 'auth.jwt'
 ]);
 

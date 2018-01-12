@@ -9,18 +9,27 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class FreundeController extends Controller
 {
+
+    /**
+     * Freundesliste
+     */
     public function getAll(Request $request)
     {
         $user = JWTAuth::toUser($request->input('token'));
 
+        $friends = $user->friends;
+        $friends->load('friendUser');
+
         $response = [
-            'friends' => $user->friendList()
+            'friends' => $friends
         ];
         return response()->json($response, 200);
 
     }
 
-
+    /**
+     * Freund hinzufügen
+     */
     public function addFriend(IdRequest $request)
     {
         $user = JWTAuth::toUser($request->input('token'));
@@ -39,16 +48,20 @@ class FreundeController extends Controller
         }
     }
 
-
+    /**
+     * Freund entfernen
+     */
     public function removeFriend(Request $request, $id)
     {
         $user = JWTAuth::toUser($request->input('token'));
 
         $friends = Friend::where('id_user1', $user->id)->where('id_user2', $id)->get();
+        $friends2 = Friend::where('id_user2', $user->id)->where('id_user1', $id)->get();
 
         if ($friends->count() != 0) {
 
             $friends->first()->delete();
+            $friends2->first()->delete();
             return response()->json(['message' => 'User nicht mehr befreundet.'], 200);
 
         } else {
@@ -61,18 +74,22 @@ class FreundeController extends Controller
      */
     public function allRequests(Request $request)
     {
+
         $user = JWTAuth::toUser($request->input('token'));
 
-        $friends = $user->friends->where('status', 0);
-        $friends->load('friendUser');
+        $friends = $user->friendsRequest;
+        $friends->load('user');
+
 
         if (count($friends) != 0) {
+
             $response = [
-                'friends' => $friends
+                'requests' => $friends
             ];
             return response()->json($response, 200);
+
         } else {
-            return response()->json(['message' => 'Keine Freundschaftsanfragen.'], 200);
+            return response()->json(['message' => 'Keine Freundschaftsanfragen.'], 400);
         }
 
 
@@ -85,14 +102,21 @@ class FreundeController extends Controller
     {
         $user = JWTAuth::toUser($request->input('token'));
 
-        $request = $user->friends->find($request_id);
+        $request = $user->friendsRequest->find($request_id);
 
-        if(!$request){
+        if (!$request) {
             return response()->json(['message' => 'Ungültige Freundschaftsanfrage.'], 400);
         }
 
         $request->status = 1;
         $request->save();
+
+        $friends = new Friend();
+        $friends->id_user1 = $request->id_user2;
+        $friends->id_user2 = $request->id_user1;
+        $friends->status = 1;
+        $friends->save();
+
         return response()->json(['message' => 'Freundschaftsanfrage wurde angenommen.'], 200);
     }
 
@@ -105,7 +129,7 @@ class FreundeController extends Controller
 
         $request = $user->friends->find($request_id);
 
-        if(!$request){
+        if (!$request) {
             return response()->json(['message' => 'Ungültige Freundschaftsanfrage.'], 400);
         }
 

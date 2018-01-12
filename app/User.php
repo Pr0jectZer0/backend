@@ -29,7 +29,12 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return $this->hasMany('App\Friend', 'id_user1');
+        return $this->hasMany('App\Friend', 'id_user1')->where('status', 1);
+    }
+
+    public function friendsRequest()
+    {
+        return $this->hasMany('App\Friend', 'id_user2')->where('status', 0);
     }
 
     public function games()
@@ -55,16 +60,5 @@ class User extends Authenticatable
     public function groups()
     {
         return $this->hasManyThrough('App\Group', 'App\GroupUser', 'id_user', 'id', 'id');
-    }
-
-    public function friendList()
-    {
-        $friend_ids = array();
-
-        foreach ($this->friends as $friend) {
-            $friend_ids[] = $friend->id_user2;
-        }
-
-        return User::whereIn('id', $friend_ids)->get();
     }
 }
