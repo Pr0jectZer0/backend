@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+
+    /**
+     * Einloggen
+     */
     public function login(Request $request)
     {
         $this->validate($request, [

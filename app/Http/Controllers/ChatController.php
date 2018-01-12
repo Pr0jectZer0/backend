@@ -12,6 +12,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ChatController extends Controller
 {
+
     public function getPrivateChatRoom(Request $request, $user_id)
     {
 

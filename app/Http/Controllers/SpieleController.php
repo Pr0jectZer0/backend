@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Response;
 
 class SpieleController extends Controller
 {
+
+    /**
+     * Spiel erstellen
+     */
     public function store(GameRequest $request){
 
         $game = Game::create([
@@ -23,7 +27,9 @@ class SpieleController extends Controller
         return Response::json($game, 201);
     }
 
-
+    /**
+     * Spiel Informationen abrufen
+     */
     public function get(Request $request, $id){
 
         $game = Game::find($id);
@@ -39,6 +45,10 @@ class SpieleController extends Controller
         return response()->json($response, 200);
     }
 
+
+    /**
+     * Spiel Informationen updaten
+     */
     public function update(Request $request, $id)
     {
         $game = Game::find($id);
@@ -46,12 +56,15 @@ class SpieleController extends Controller
         if (!$game) {
             return response()->json(['message' => 'Spiel wurde nicht gefunden.'], 404);
         }
-
+        //todo
         $game->name = $request->input('name');
         $game->save();
         return response()->json(['user' => $game], 200);
     }
 
+    /**
+     * Spiel löschen
+     */
     public function delete($id)
     {
         $game = Game::findOrfail($id);
@@ -59,6 +72,9 @@ class SpieleController extends Controller
         return response()->json(['message' => 'Spiel wurde gelöscht.'], 200);
     }
 
+    /**
+     * Spiele Liste abrufen
+     */
     public function getAll(){
         $games = Game::all();
         $response = [
@@ -67,6 +83,9 @@ class SpieleController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Publisher Liste abrufen
+     */
     public function getPublisher(){
         $publisher = Publisher::all();
         $response = [
@@ -75,6 +94,9 @@ class SpieleController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Genre Liste abrufen
+     */
     public function getGenre(){
         $genre = Genre::all();
         $response = [

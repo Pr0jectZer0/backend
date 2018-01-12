@@ -14,6 +14,9 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class UserController extends Controller
 {
 
+    /**
+     * Account erstellen
+     */
     public function store(UserRequest $request)
     {
 
@@ -30,6 +33,9 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Account Informationen abrufen
+     */
     public function get(Request $request, $id)
     {
 
@@ -45,6 +51,9 @@ class UserController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Account Informationen updaten
+     */
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -58,6 +67,9 @@ class UserController extends Controller
         return response()->json(['user' => $user], 200);
     }
 
+    /**
+     * Account löschen
+     */
     public function delete($id)
     {
         $user = User::findOrfail($id);
@@ -65,6 +77,9 @@ class UserController extends Controller
         return response()->json(['message' => 'User wurde gelöscht.'], 200);
     }
 
+    /**
+     * Liste aller User
+     */
     public function getAll()
     {
         $users = User::all();
@@ -74,6 +89,9 @@ class UserController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Account Spiel hinzufügen
+     */
     public function addGame(IdRequest $request)
     {
         $user = JWTAuth::toUser($request->input('token'));
@@ -93,6 +111,9 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Account Spiele anzeigen
+     */
     public function showGames(Request $request)
     {
         $user = JWTAuth::toUser($request->input('token'));
@@ -103,6 +124,9 @@ class UserController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Account Spiel entfernen
+     */
     public function removeGame(Request $request, $id)
     {
         $user = JWTAuth::toUser($request->input('token'));

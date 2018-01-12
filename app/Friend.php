@@ -8,11 +8,24 @@ class Friend extends Model
 {
     protected $table = "freunde";
 
-    public function user(){
+    protected $appends = ['freundschaft'];
+
+    public function getQuantityAttribute()
+    {
+        if ($this->status == 0) {
+            return 'angefragt';
+        } else if ($this->status == 1) {
+            return 'freunde';
+        }
+    }
+
+    public function user()
+    {
         return $this->belongsTo('App\User', 'id_user1', 'id');
     }
 
-    public function friendUser(){
+    public function friendUser()
+    {
         return $this->hasOne('App\User', 'id', 'id_user2');
     }
 }

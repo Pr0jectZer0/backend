@@ -54,6 +54,21 @@ Route::delete('/friend/remove/{id}', [
     'middleware' => 'auth.jwt'
 ]);
 
+Route::get('/friend/requests', [
+    'uses' => 'FreundeController@allRequests',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/friend/{request_id}/accept', [
+    'uses' => 'FreundeController@acceptRequest',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/friend/{request_id}/decline', [
+    'uses' => 'FreundeController@declineRequest',
+    'middleware' => 'auth.jwt'
+]);
+
 Route::post('/game', [
     'uses' => 'SpieleController@store'
 ]);

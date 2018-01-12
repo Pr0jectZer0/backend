@@ -44,7 +44,7 @@ class FreundeController extends Controller
     {
         $user = JWTAuth::toUser($request->input('token'));
 
-        $friends = Friend::where('id_user1', $user->id)->where('id_user2',$id)->get();
+        $friends = Friend::where('id_user1', $user->id)->where('id_user2', $id)->get();
 
         if ($friends->count() != 0) {
 
@@ -54,6 +54,63 @@ class FreundeController extends Controller
         } else {
             return response()->json(['message' => 'User nicht befreundet.'], 400);
         }
+    }
+
+    /**
+     * Alle Freundschaftsanfrage anzeigen
+     */
+    public function allRequests(Request $request)
+    {
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $friends = $user->friends->where('status', 0);
+        $friends->load('friendUser');
+
+        if (count($friends) != 0) {
+            $response = [
+                'friends' => $friends
+            ];
+            return response()->json($response, 200);
+        } else {
+            return response()->json(['message' => 'Keine Freundschaftsanfragen.'], 200);
+        }
+
+
+    }
+
+    /**
+     * Freundschaftsanfrage akzeptieren
+     */
+    public function acceptRequest(Request $request, $request_id)
+    {
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $request = $user->friends->find($request_id);
+
+        if(!$request){
+            return response()->json(['message' => 'Ungültige Freundschaftsanfrage.'], 400);
+        }
+
+        $request->status = 1;
+        $request->save();
+        return response()->json(['message' => 'Freundschaftsanfrage wurde angenommen.'], 200);
+    }
+
+    /**
+     * Freundschaftsanfrage ablehnen
+     */
+    public function declineRequest(Request $request, $request_id)
+    {
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $request = $user->friends->find($request_id);
+
+        if(!$request){
+            return response()->json(['message' => 'Ungültige Freundschaftsanfrage.'], 400);
+        }
+
+        $request->delete();
+        return response()->json(['message' => 'Freundschaftsanfrage wurde abgelehnt.'], 200);
     }
 
 }

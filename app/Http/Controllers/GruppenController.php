@@ -280,5 +280,12 @@ class GruppenController extends Controller
         return response()->json(['message' => 'Notiz wurde Gruppe hinzugefügt.'], 200);
     }
 
+    /**
+     * Gruppe Notiz entfernen
+     */
+    public function detachNote(Request $request, $group_id, $note_id){
+
+    }
+
 
 }
