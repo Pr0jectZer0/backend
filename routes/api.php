@@ -31,11 +31,12 @@ Route::get('/user/groups', [
 ]);
 
 Route::get('/user/{id}', [
-    'uses' => 'UserController@get'
+    'uses' => 'UserController@getById'
 ]);
 
 Route::get('/user', [
-    'uses' => 'UserController@get'
+    'uses' => 'UserController@getByToken',
+    'middleware' => 'auth.jwt'
 ]);
 
 Route::put('/user/{id}', [

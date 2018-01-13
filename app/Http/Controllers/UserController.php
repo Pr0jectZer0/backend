@@ -34,9 +34,9 @@ class UserController extends Controller
 
 
     /**
-     * Account Informationen abrufen
+     * Account Informationen abrufen (id)
      */
-    public function get(Request $request, $id)
+    public function getById(Request $request, $id)
     {
 
         if (!$id) {
@@ -56,15 +56,29 @@ class UserController extends Controller
     }
 
     /**
+     * Account Informationen abrufen (token)
+     */
+    public function getByToken(Request $request)
+    {
+
+        $user = JWTAuth::toUser($request->input('token'));
+
+        if (!$user) {
+            return response()->json(['message' => 'User wurde nicht gefunden.'], 404);
+        }
+
+        $response = [
+            'user' => $user
+        ];
+        return response()->json($response, 200);
+    }
+
+    /**
      * Account Informationen updaten
      */
     public function update(Request $request, $id)
     {
-        if (!$id) {
-            $user = JWTAuth::toUser($request->input('token'));
-        } else {
-            $user = User::find($id);
-        }
+        $user = User::find($id);
 
         if (!$user) {
             return response()->json(['message' => 'User wurde nicht gefunden.'], 404);

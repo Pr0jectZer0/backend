@@ -189,6 +189,16 @@ $.ajax(settings).done(function (response) {
             "geheimantwort": null,
             "created_at": "2018-01-09 12:32:53",
             "updated_at": "2018-01-09 12:32:53"
+        },
+        {
+            "id": 5,
+            "name": "unde",
+            "alter_jahre": null,
+            "email": "test2@test.de",
+            "geheimfrage": null,
+            "geheimantwort": null,
+            "created_at": "2018-01-12 22:25:24",
+            "updated_at": "2018-01-12 22:25:24"
         }
     ]
 }</code></pre>
@@ -196,8 +206,38 @@ $.ajax(settings).done(function (response) {
 <p><code>GET api/users</code></p>
 <p><code>HEAD api/users</code></p>
 <!-- END_da5727be600e4865c1b632f7745c8e91 -->
+<!-- START_1fd8bdc7b6006d84987314f02b0ad69b -->
+<h2>Alle Gruppen eines Benutzers</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://project-zero.local/api/user/groups" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/user/groups",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "error": "token_not_provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/user/groups</code></p>
+<p><code>HEAD api/user/groups</code></p>
+<!-- END_1fd8bdc7b6006d84987314f02b0ad69b -->
 <!-- START_8ff0f42739fc7113fcacca8ef86d1ce2 -->
-<h2>Account Informationen abrufen</h2>
+<h2>Account Informationen abrufen (id)</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -236,7 +276,7 @@ $.ajax(settings).done(function (response) {
 <p><code>HEAD api/user/{id}</code></p>
 <!-- END_8ff0f42739fc7113fcacca8ef86d1ce2 -->
 <!-- START_2ea88ff35aa222f5582e50f39a2b35fd -->
-<h2>Account Informationen abrufen</h2>
+<h2>Account Informationen abrufen (token)</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -258,7 +298,9 @@ $.ajax(settings).done(function (response) {
 <blockquote>
 <p>Example response:</p>
 </blockquote>
-<pre><code class="language-json">null</code></pre>
+<pre><code class="language-json">{
+    "error": "token_not_provided"
+}</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/user</code></p>
 <p><code>HEAD api/user</code></p>
@@ -1255,6 +1297,36 @@ $.ajax(settings).done(function (response) {
 <p><code>GET api/group/{group_id}</code></p>
 <p><code>HEAD api/group/{group_id}</code></p>
 <!-- END_80b5a76c9b4ea93f6e4fea71664e8c5d -->
+<!-- START_f9e500d28904b7938ffe0c065b031a2c -->
+<h2>Alle Gruppen anzeigen</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://project-zero.local/api/groups" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/groups",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "error": "token_not_provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/groups</code></p>
+<p><code>HEAD api/groups</code></p>
+<!-- END_f9e500d28904b7938ffe0c065b031a2c -->
 <!-- START_e449b8465af8189a9ddc80287e204d88 -->
 <h2>Gruppe User hinzufügen (anfrage)</h2>
 <blockquote>
@@ -1262,7 +1334,7 @@ $.ajax(settings).done(function (response) {
 </blockquote>
 <pre><code class="language-bash">curl -X POST "http://project-zero.local/api/group/{group_id}/add_user" \
 -H "Accept: application/json" \
-    -d "id"="1" \
+    -d "id"="3" \
 </code></pre>
 <pre><code class="language-javascript">var settings = {
     "async": true,
@@ -1270,7 +1342,7 @@ $.ajax(settings).done(function (response) {
     "url": "http://project-zero.local/api/group/{group_id}/add_user",
     "method": "POST",
     "data": {
-        "id": "1"
+        "id": "3"
 },
     "headers": {
         "accept": "application/json"
@@ -1297,7 +1369,7 @@ $.ajax(settings).done(function (response) {
 <td>id</td>
 <td>string</td>
 <td>required</td>
-<td><code>1</code>, <code>3</code> or <code>4</code></td>
+<td><code>1</code>, <code>3</code>, <code>4</code> or <code>5</code></td>
 </tr>
 </tbody>
 </table>
@@ -1339,7 +1411,7 @@ $.ajax(settings).done(function (response) {
 </blockquote>
 <pre><code class="language-bash">curl -X POST "http://project-zero.local/api/group/{group_id}/remove_user" \
 -H "Accept: application/json" \
-    -d "id"="1" \
+    -d "id"="3" \
 </code></pre>
 <pre><code class="language-javascript">var settings = {
     "async": true,
@@ -1347,7 +1419,7 @@ $.ajax(settings).done(function (response) {
     "url": "http://project-zero.local/api/group/{group_id}/remove_user",
     "method": "POST",
     "data": {
-        "id": "1"
+        "id": "3"
 },
     "headers": {
         "accept": "application/json"
@@ -1374,7 +1446,7 @@ $.ajax(settings).done(function (response) {
 <td>id</td>
 <td>string</td>
 <td>required</td>
-<td><code>1</code>, <code>3</code> or <code>4</code></td>
+<td><code>1</code>, <code>3</code>, <code>4</code> or <code>5</code></td>
 </tr>
 </tbody>
 </table>
@@ -1470,7 +1542,7 @@ $.ajax(settings).done(function (response) {
 <p><code>HEAD api/user/group/{group_id}/decline</code></p>
 <!-- END_2c7c99242bcd60f5277ec7ee69f9714b -->
 <!-- START_c3427a577a04488d93a5d1e322c664a7 -->
-<h2>Alle Grupen Anfragen an Gruppe</h2>
+<h2>Alle Gruppen Anfragen an Gruppe</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -1559,66 +1631,6 @@ $.ajax(settings).done(function (response) {
 <p><code>GET api/group/{group_id}/decline/{user_id}</code></p>
 <p><code>HEAD api/group/{group_id}/decline/{user_id}</code></p>
 <!-- END_d06d4979042fec742229ab99d5640410 -->
-<!-- START_1fd8bdc7b6006d84987314f02b0ad69b -->
-<h2>Alle Gruppen eines Benutzers</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET "http://project-zero.local/api/user/groups" \
--H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://project-zero.local/api/user/groups",
-    "method": "GET",
-    "headers": {
-        "accept": "application/json"
-    }
-}
-
-$.ajax(settings).done(function (response) {
-    console.log(response);
-});</code></pre>
-<blockquote>
-<p>Example response:</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "User wurde nicht gefunden."
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET api/user/groups</code></p>
-<p><code>HEAD api/user/groups</code></p>
-<!-- END_1fd8bdc7b6006d84987314f02b0ad69b -->
-<!-- START_f9e500d28904b7938ffe0c065b031a2c -->
-<h2>Alle Gruppen anzeigen</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET "http://project-zero.local/api/groups" \
--H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://project-zero.local/api/groups",
-    "method": "GET",
-    "headers": {
-        "accept": "application/json"
-    }
-}
-
-$.ajax(settings).done(function (response) {
-    console.log(response);
-});</code></pre>
-<blockquote>
-<p>Example response:</p>
-</blockquote>
-<pre><code class="language-json">{
-    "error": "token_not_provided"
-}</code></pre>
-<h3>HTTP Request</h3>
-<p><code>GET api/groups</code></p>
-<p><code>HEAD api/groups</code></p>
-<!-- END_f9e500d28904b7938ffe0c065b031a2c -->
 <!-- START_2c26db0a9d1c7df11e667780746fad06 -->
 <h2>Gruppen löschen</h2>
 <blockquote>
