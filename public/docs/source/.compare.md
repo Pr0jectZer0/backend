@@ -1131,7 +1131,7 @@ $.ajax(settings).done(function (response) {
 <!-- END_b620ccb3486c6181af93a3dfc6793d6f -->
 
 <!-- START_fb9d2c07c967699cf37144b4855759c3 -->
-## api/chatroom/{user_id}
+## Private Chat Room Id erhalten
 
 > Example request:
 
@@ -1173,7 +1173,11 @@ $.ajax(settings).done(function (response) {
 <!-- END_fb9d2c07c967699cf37144b4855759c3 -->
 
 <!-- START_b93789cddec054a9c95d51214efd7740 -->
-## api/chatroom/{chatroom_id}/messages
+## Private Nachricht erhalten
+
+Pusher Channel: private-chat.{PrivateChatRoomId}
+
+Pusher Event Name: App\Events\MessageSent
 
 > Example request:
 
@@ -1215,13 +1219,15 @@ $.ajax(settings).done(function (response) {
 <!-- END_b93789cddec054a9c95d51214efd7740 -->
 
 <!-- START_48010a061a0407a20ef00eab261b0584 -->
-## api/chatroom/{chatroom_id}/messages
+## Private Nachricht senden
 
 > Example request:
 
 ```bash
 curl -X POST "http://project-zero.local/api/chatroom/{chatroom_id}/messages" \
--H "Accept: application/json"
+-H "Accept: application/json" \
+    -d "message"="ipsum" \
+
 ```
 
 ```javascript
@@ -1230,6 +1236,9 @@ var settings = {
     "crossDomain": true,
     "url": "http://project-zero.local/api/chatroom/{chatroom_id}/messages",
     "method": "POST",
+    "data": {
+        "message": "ipsum"
+},
     "headers": {
         "accept": "application/json"
     }
@@ -1244,8 +1253,102 @@ $.ajax(settings).done(function (response) {
 ### HTTP Request
 `POST api/chatroom/{chatroom_id}/messages`
 
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    message | string |  required  | 
 
 <!-- END_48010a061a0407a20ef00eab261b0584 -->
+
+<!-- START_c2ac829be8d2029a6bef36931a649579 -->
+## Gruppen Nachricht erhalten
+
+Pusher Channel: private-group-chat.{GroupId}
+
+Pusher Event Name: App\Events\GroupMessageSent
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/groupchat/{group_id}/messages" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/groupchat/{group_id}/messages",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/groupchat/{group_id}/messages`
+
+`HEAD api/groupchat/{group_id}/messages`
+
+
+<!-- END_c2ac829be8d2029a6bef36931a649579 -->
+
+<!-- START_e525e58d560db68920ab93d3a85e2c8e -->
+## Gruppen Nachricht senden
+
+> Example request:
+
+```bash
+curl -X POST "http://project-zero.local/api/groupchat/{group_id}/messages" \
+-H "Accept: application/json" \
+    -d "message"="sunt" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/groupchat/{group_id}/messages",
+    "method": "POST",
+    "data": {
+        "message": "sunt"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/groupchat/{group_id}/messages`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    message | string |  required  | 
+
+<!-- END_e525e58d560db68920ab93d3a85e2c8e -->
 
 <!-- START_551da87187657555319a862580d988df -->
 ## Notiz erstellen
@@ -2111,4 +2214,332 @@ $.ajax(settings).done(function (response) {
 
 
 <!-- END_5d8759de83844c04e2efbaae95f1c7b5 -->
+
+<!-- START_22b1e9cb2630748a2f47cd0e96c58fdd -->
+## Gruppe Termin hinzufügen
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{group_id}/attach/date/{date_id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{group_id}/attach/date/{date_id}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{group_id}/attach/date/{date_id}`
+
+`HEAD api/group/{group_id}/attach/date/{date_id}`
+
+
+<!-- END_22b1e9cb2630748a2f47cd0e96c58fdd -->
+
+<!-- START_c315063b13bc0bcb5dc8185178794d80 -->
+## Gruppe Termin entfernen
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{group_id}/detach/date/{date_id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{group_id}/detach/date/{date_id}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{group_id}/detach/date/{date_id}`
+
+`HEAD api/group/{group_id}/detach/date/{date_id}`
+
+
+<!-- END_c315063b13bc0bcb5dc8185178794d80 -->
+
+<!-- START_9ec7c41b92ad9735aeb8a559f351451f -->
+## Alle Termine einer Gruppe
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/group/{group_id}/dates" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/group/{group_id}/dates",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/group/{group_id}/dates`
+
+`HEAD api/group/{group_id}/dates`
+
+
+<!-- END_9ec7c41b92ad9735aeb8a559f351451f -->
+
+<!-- START_135019a43006a5b141a2cb34c9767a79 -->
+## Termin erstellen
+
+> Example request:
+
+```bash
+curl -X POST "http://project-zero.local/api/date" \
+-H "Accept: application/json" \
+    -d "titel"="doloremque" \
+    -d "beschreibung"="doloremque" \
+    -d "end_datum"="doloremque" \
+    -d "start_datum"="doloremque" \
+
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/date",
+    "method": "POST",
+    "data": {
+        "titel": "doloremque",
+        "beschreibung": "doloremque",
+        "end_datum": "doloremque",
+        "start_datum": "doloremque"
+},
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`POST api/date`
+
+#### Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    titel | string |  required  | Maximum: `255`
+    beschreibung | string |  required  | 
+    end_datum | string |  required  | 
+    start_datum | string |  required  | 
+
+<!-- END_135019a43006a5b141a2cb34c9767a79 -->
+
+<!-- START_fd00c0529c974bae0b04402c877885b4 -->
+## Alle Termin vom Benutzer
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/dates" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/dates",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/dates`
+
+`HEAD api/dates`
+
+
+<!-- END_fd00c0529c974bae0b04402c877885b4 -->
+
+<!-- START_4f4c1c69c6b654e178bf44015d57b439 -->
+## Termin get by id
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/date/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/date/{id}",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/date/{id}`
+
+`HEAD api/date/{id}`
+
+
+<!-- END_4f4c1c69c6b654e178bf44015d57b439 -->
+
+<!-- START_94d41ca9b65ee83de6a50a151aa8928c -->
+## Termin updaten/ändern
+
+> Example request:
+
+```bash
+curl -X PUT "http://project-zero.local/api/date/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/date/{id}",
+    "method": "PUT",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`PUT api/date/{id}`
+
+
+<!-- END_94d41ca9b65ee83de6a50a151aa8928c -->
+
+<!-- START_c0f572bb0d06be8c1750f5e82a5daced -->
+## Termin löschen
+
+> Example request:
+
+```bash
+curl -X DELETE "http://project-zero.local/api/date/{id}" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/date/{id}",
+    "method": "DELETE",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+
+### HTTP Request
+`DELETE api/date/{id}`
+
+
+<!-- END_c0f572bb0d06be8c1750f5e82a5daced -->
 

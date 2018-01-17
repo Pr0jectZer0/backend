@@ -47,9 +47,19 @@ class User extends Authenticatable
         return $this->hasMany('App\Message');
     }
 
+    public function groupMessages()
+    {
+        return $this->hasMany('App\GroupMessage');
+    }
+
     public function notes()
     {
         return $this->hasMany('App\Note', 'id_user');
+    }
+
+    public function termine()
+    {
+        return $this->hasMany('App\Termin', 'id_user');
     }
 
     public function chatRooms()

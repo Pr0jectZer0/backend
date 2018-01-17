@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\ChatRoom;
+use App\Events\GroupMessageSent;
 use App\Events\MessageSent;
+use App\Group;
+use App\GroupMessage;
+use App\Http\Requests\MesseageRequest;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,6 +17,9 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class ChatController extends Controller
 {
 
+    /**
+     * Private Chat Room Id erhalten
+     */
     public function getPrivateChatRoom(Request $request, $user_id)
     {
 
@@ -56,7 +63,15 @@ class ChatController extends Controller
         return response()->json(['chatroom' => $chatRoomId], 200);
     }
 
-    public function fetchMessages(Request $request, $chatroom_id)
+
+    /**
+     * Private Nachricht erhalten
+     *
+     * Pusher Channel: private-chat.{PrivateChatRoomId}
+     *
+     * Pusher Event Name: App\Events\MessageSent
+     */
+    public function fetchPrivateMessages(Request $request, $chatroom_id)
     {
         //$user = JWTAuth::toUser($request->input('token'));
         //$chatRoom = ChatRoom::where('chatroom_id', $chatroom_id)->where('user_id', '!=', $user->id)->first();
@@ -65,7 +80,10 @@ class ChatController extends Controller
         return response()->json(['message' => $message], 200);
     }
 
-    public function sendMessage(Request $request, $chatroom_id)
+    /**
+     * Private Nachricht senden
+     */
+    public function sendPrivateMessage(MesseageRequest $request, $chatroom_id)
     {
         $user = JWTAuth::toUser($request->input('token'));
 
@@ -75,6 +93,54 @@ class ChatController extends Controller
         ]);
 
         broadcast(new MessageSent($user, $message))->toOthers();
+
+        return response()->json(['message' => 'Nachricht wurde gesendet.'], 201);
+    }
+
+
+    /**
+     * Gruppen Nachricht erhalten
+     *
+     * Pusher Channel: private-group-chat.{GroupId}
+     *
+     * Pusher Event Name: App\Events\GroupMessageSent
+     */
+
+    public function fetchGroupMessages(Request $request, $group_id)
+    {
+
+        $group = Group::find($group_id);
+
+        if (!$group) {
+            return response()->json(['message' => 'Gruppe wurde nicht gefunden.'], 404);
+        }
+        //$user = JWTAuth::toUser($request->input('token'));
+        //$chatRoom = ChatRoom::where('chatroom_id', $chatroom_id)->where('user_id', '!=', $user->id)->first();
+        //$chatUser = User::findOrfail($chatRoom->user_id);
+        $message = GroupMessage::with(['user'])->where('group_id', $group_id)->get();
+        return response()->json(['message' => $message], 200);
+    }
+
+    /**
+     * Gruppen Nachricht senden
+     */
+    public function sendGroupMessage(MesseageRequest $request, $group_id)
+    {
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $group = Group::find($group_id);
+
+        if (!$group) {
+            return response()->json(['message' => 'Gruppe wurde nicht gefunden.'], 404);
+        }
+
+        $message = $user->groupMessages()->create([
+            'group_id' => $group_id,
+            'message' => $request->input('message')
+        ]);
+
+        broadcast(new GroupMessageSent($user, $message))->toOthers();
+
 
         return response()->json(['message' => 'Nachricht wurde gesendet.'], 201);
     }

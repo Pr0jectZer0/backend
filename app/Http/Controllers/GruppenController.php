@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\GroupNote;
+use App\GroupTermin;
 use App\GroupUser;
 use App\Http\Requests\GroupRequest;
 use App\Http\Requests\IdRequest;
 use App\Http\Requests\UserIdRequest;
 use App\Note;
+use App\Termin;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -186,7 +188,7 @@ class GruppenController extends Controller
     {
         $user = JWTAuth::toUser($request->input('token'));
 
-        $groups = GroupUser::with('group')->where('id_gruppe', $group_id)->where('rolle', 'angefragt_gruppe')->get();
+        $groups = GroupUser::with('user')->where('id_gruppe', $group_id)->where('rolle', 'angefragt_gruppe')->get();
 
         if (count($groups) != 0) {
             $response = [
@@ -393,7 +395,7 @@ class GruppenController extends Controller
             return response()->json(['message' => 'Notiz wurde nicht gefunden.'], 404);
         }
 
-        $group = $user->groups->find($group_id);
+        $group = Group::find($group_id);
 
         if (!$group) {
             return response()->json(['message' => 'Gruppe wurde nicht gefunden.'], 404);
@@ -430,5 +432,77 @@ class GruppenController extends Controller
         $groupNote->delete();
 
         return response()->json(['message' => 'Notiz aus Gruppe entfernt.'], 200);
+    }
+
+    /**
+     * Gruppe Termin hinzufügen
+     */
+    public function attachTermin(Request $request, $group_id, $date_id)
+    {
+
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $termin = $user->termine->find($date_id);
+
+        if (!$termin) {
+            return response()->json(['message' => 'Termin wurde nicht gefunden.'], 404);
+        }
+
+        $group = Group::find($group_id);
+
+        if (!$group) {
+            return response()->json(['message' => 'Gruppe wurde nicht gefunden.'], 404);
+        }
+
+        $groupDate = GroupTermin::create([
+            'id_gruppe' => $group_id,
+            'id_termin' => $date_id,
+        ]);
+
+        return response()->json(['message' => 'Termin wurde Gruppe hinzugefügt.'], 200);
+    }
+
+    /**
+     * Gruppe Termin entfernen
+     */
+    public function detachTermin(Request $request, $group_id, $date_id)
+    {
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $termin = Termin::find($date_id);
+
+        if (!$termin) {
+            return response()->json(['message' => 'Termin wurde nicht gefunden.'], 404);
+        }
+
+        $group = Group::find($group_id);
+
+        if (!$group) {
+            return response()->json(['message' => 'Gruppe wurde nicht gefunden.'], 404);
+        }
+
+        $groupDate = GroupTermin::where('id_gruppe', $group->id)->where('id_termin', $termin->id)->first();
+        $groupDate->delete();
+
+        return response()->json(['message' => 'Notiz aus Gruppe entfernt.'], 200);
+    }
+
+    /**
+     * Alle Termine einer Gruppe
+     */
+    public function allDates(Request $request, $group_id)
+    {
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $dates = Termin::whereHas('groups', function ($query) use ($group_id) {
+            $query->where('id_gruppe', $group_id);
+        })->get();
+
+
+        if (count($dates) == 0) {
+            return response()->json(['message' => 'Gruppe wurde nicht gefunden oder besitzt keine Termine.'], 404);
+        }
+
+        return response()->json($dates, 200);
     }
 }

@@ -129,12 +129,22 @@ Route::get('/chatroom/{user_id}', [
 ]);
 
 Route::get('/chatroom/{chatroom_id}/messages', [
-    'uses' => 'ChatController@fetchMessages',
+    'uses' => 'ChatController@fetchPrivateMessages',
     'middleware' => 'auth.jwt'
 ]);
 
 Route::post('/chatroom/{chatroom_id}/messages', [
-    'uses' => 'ChatController@sendMessage',
+    'uses' => 'ChatController@sendPrivateMessage',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/groupchat/{group_id}/messages', [
+    'uses' => 'ChatController@fetchGroupMessages',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/groupchat/{group_id}/messages', [
+    'uses' => 'ChatController@sendGroupMessage',
     'middleware' => 'auth.jwt'
 ]);
 
@@ -242,5 +252,45 @@ Route::get('/group/{group_id}/detach/note/{note_id}', [
 
 Route::get('/group/{group_id}/notes', [
     'uses' => 'GruppenController@allNotes',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/attach/date/{date_id}', [
+    'uses' => 'GruppenController@attachTermin',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/detach/date/{date_id}', [
+    'uses' => 'GruppenController@detachTermin',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/group/{group_id}/dates', [
+    'uses' => 'GruppenController@allDates',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::post('/date', [
+    'uses' => 'TerminController@store',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/dates', [
+    'uses' => 'TerminController@getAll',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::get('/date/{id}', [
+    'uses' => 'TerminController@get',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::put('/date/{id}', [
+    'uses' => 'TerminController@update',
+    'middleware' => 'auth.jwt'
+]);
+
+Route::delete('/date/{id}', [
+    'uses' => 'TerminController@delete',
     'middleware' => 'auth.jwt'
 ]);

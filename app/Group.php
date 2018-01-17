@@ -30,4 +30,9 @@ class Group extends Model
         return $this->hasMany('App\GroupNote', 'id_gruppe', 'id');
     }
 
+    public function termine()
+    {
+        return $this->hasMany('App\GroupTermin', 'id_gruppe', 'id');
+    }
+
 }

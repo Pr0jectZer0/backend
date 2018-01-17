@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Kalender extends Migration
+class CreateGruppeTerminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class Kalender extends Migration
      */
     public function up()
     {
-        Schema::create('kalender', function (Blueprint $table) {
+        Schema::create('gruppe_termin', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('id_user');
+            $table->integer('id_gruppe');
+            $table->integer('id_termin');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -29,6 +28,6 @@ class Kalender extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kalender');
+        Schema::dropIfExists('gruppe_termin');
     }
 }

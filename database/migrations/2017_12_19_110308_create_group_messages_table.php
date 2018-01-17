@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Termin extends Migration
+class CreateGroupMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class Termin extends Migration
      */
     public function up()
     {
-        Schema::create('termin', function (Blueprint $table) {
+        Schema::create('group_messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user');
-            $table->text('titel');
-            $table->text('beschreibung');
-            $table->timestamp('start_datum')->nullable();
-            $table->timestamp('end_datum')->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->integer('group_id')->unsigned();
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class Termin extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('termin');
+        Schema::dropIfExists('group_messages');
     }
 }
