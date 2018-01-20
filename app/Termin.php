@@ -18,4 +18,10 @@ class Termin extends Model
     {
         return $this->hasMany('App\GroupTermin', 'id_termin', 'id');
     }
+
+    public function shared(){
+        return $this->hasMany('App\UserTermin', 'id_termin', 'id');
+
+        //return $this->hasManyThrough('App\User', 'App\UserNote', 'id_notiz', 'id', 'id');
+    }
 }

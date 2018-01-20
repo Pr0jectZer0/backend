@@ -13,284 +13,130 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/user/login', [
-    'uses' => 'AuthController@login'
-]);
-
-Route::post('/user', [
-    'uses' => 'UserController@store'
-]);
-
-Route::get('/users', [
-    'uses' => 'UserController@getAll'
-]);
-
-Route::get('/user/groups', [
-    'uses' => 'GruppenController@getAllUser',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/user/{id}', [
-    'uses' => 'UserController@getById'
-]);
-
-Route::get('/user', [
-    'uses' => 'UserController@getByToken',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::put('/user/{id}', [
-    'uses' => 'UserController@update',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::delete('/user/{id}', [
-    'uses' => 'UserController@delete',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/friends', [
-    'uses' => 'FreundeController@getAll',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::post('/friend/add', [
-    'uses' => 'FreundeController@addFriend',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::delete('/friend/remove/{id}', [
-    'uses' => 'FreundeController@removeFriend',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/friend/requests', [
-    'uses' => 'FreundeController@allRequests',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/friend/{request_id}/accept', [
-    'uses' => 'FreundeController@acceptRequest',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/friend/{request_id}/decline', [
-    'uses' => 'FreundeController@declineRequest',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::post('/game', [
-    'uses' => 'SpieleController@store'
-]);
-
-Route::get('/games', [
-    'uses' => 'SpieleController@getAll'
-]);
-
-Route::get('/game/{id}', [
-    'uses' => 'SpieleController@get'
-]);
-
-Route::put('/game/{id}', [
-    'uses' => 'SpieleController@update',
-]);
-
-Route::delete('/game/{id}', [
-    'uses' => 'SpieleController@delete',
-]);
-
-Route::get('/publisher', [
-    'uses' => 'SpieleController@getPublisher'
-]);
-
-Route::get('/genre', [
-    'uses' => 'SpieleController@getGenre'
-]);
+Route::post('/user', 'UserController@store');
+Route::post('/user/login', 'AuthController@login');
 
 
-Route::post('/user/game/add', [
-    'uses' => 'UserController@addGame',
-    'middleware' => 'auth.jwt'
-]);
+Route::middleware(['auth.jwt'])->group(function () {
 
-Route::delete('/user/game/remove/{id}', [
-    'uses' => 'UserController@removeGame',
-    'middleware' => 'auth.jwt'
-]);
+    /*
+     * User Routes
+    */
+    Route::post('/user/game/add', 'UserController@addGame');
 
-Route::get('/user/game/list', [
-    'uses' => 'UserController@showGames',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/user', 'UserController@getByToken');
+    Route::get('/users', 'UserController@getAll');
+    Route::get('/user/game/list', 'UserController@showGames');
+    Route::get('/user/groups', 'GruppenController@getAllUser');
+    Route::get('/user/groups/requests', 'GruppenController@allRequestsUser');
+    Route::get('/user/group/{group_id}/accept', 'GruppenController@acceptRequestUser');
+    Route::get('/user/group/{group_id}/decline', 'GruppenController@declineRequestUser');
+    Route::get('/user/{id}', 'UserController@getById');
 
-Route::get('/chatroom/{user_id}', [
-    'uses' => 'ChatController@getPrivateChatRoom',
-    'middleware' => 'auth.jwt'
-]);
+    Route::put('/user/{id}', 'UserController@update');
 
-Route::get('/chatroom/{chatroom_id}/messages', [
-    'uses' => 'ChatController@fetchPrivateMessages',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::post('/chatroom/{chatroom_id}/messages', [
-    'uses' => 'ChatController@sendPrivateMessage',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/groupchat/{group_id}/messages', [
-    'uses' => 'ChatController@fetchGroupMessages',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::post('/groupchat/{group_id}/messages', [
-    'uses' => 'ChatController@sendGroupMessage',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::post('/note', [
-    'uses' => 'NotizController@store',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/notes', [
-    'uses' => 'NotizController@getAll',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/note/{id}', [
-    'uses' => 'NotizController@get',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::put('/note/{id}', [
-    'uses' => 'NotizController@update',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::delete('/note/{id}', [
-    'uses' => 'NotizController@delete',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::post('/group', [
-    'uses' => 'GruppenController@create',
-    'middleware' => 'auth.jwt'
-]);
-
-Route::get('/group/{group_id}', [
-    'uses' => 'GruppenController@get',
-    'middleware' => 'auth.jwt'
-]);
+    Route::delete('/user/{id}', 'UserController@delete');
+    Route::delete('/user/game/remove/{id}', 'UserController@removeGame');
 
 
-Route::get('/groups', [
-    'uses' => 'GruppenController@getAll',
-    'middleware' => 'auth.jwt'
-]);
+    /*
+    * Freunde Routes
+    */
+    Route::post('/friend/add', 'FreundeController@addFriend');
 
-Route::post('/group/{group_id}/add_user', [
-    'uses' => 'GruppenController@addUser',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/friends', 'FreundeController@getAll');
 
-Route::get('/group/{group_id}/request_access', [
-    'uses' => 'GruppenController@requestAcess',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/friend/requests', 'FreundeController@allRequests');
+    Route::get('/friend/{request_id}/accept', 'FreundeController@acceptRequest');
+    Route::get('/friend/{request_id}/decline', 'FreundeController@declineRequest');
 
-Route::post('/group/{group_id}/remove_user', [
-    'uses' => 'GruppenController@removeUser',
-    'middleware' => 'auth.jwt'
-]);
+    Route::delete('/friend/remove/{id}', 'FreundeController@removeFriend');
 
-Route::get('/user/groups/requests', [
-    'uses' => 'GruppenController@allRequestsUser',
-    'middleware' => 'auth.jwt'
-]);
+    /*
+    * Spiele, Publisher, Genre Routes
+    */
+    Route::post('/game', 'SpieleController@store');
 
-Route::get('/user/group/{group_id}/accept', [
-    'uses' => 'GruppenController@acceptRequestUser',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/games', 'SpieleController@getAll');
+    Route::get('/publisher', 'SpieleController@getPublisher');
+    Route::get('/genre', 'SpieleController@getGenre');
+    Route::get('/game/{id}', 'SpieleController@get');
 
-Route::get('/user/group/{group_id}/decline', [
-    'uses' => 'GruppenController@declineRequestUser',
-    'middleware' => 'auth.jwt'
-]);
+    Route::put('/game/{id}', 'SpieleController@update');
+
+    Route::delete('/game/{id}', 'SpieleController@delete');
 
 
-Route::get('/group/{group_id}/requests', [
-    'uses' => 'GruppenController@allRequestsGroup',
-    'middleware' => 'auth.jwt'
-]);
+    /*
+    * Chat Routes
+    */
+    Route::post('/chatroom/{chatroom_id}/messages', 'ChatController@sendPrivateMessage');
+    Route::post('/groupchat/{group_id}/messages', 'ChatController@sendGroupMessage');
 
-Route::get('/group/{group_id}/accept/{user_id}', [
-    'uses' => 'GruppenController@acceptRequestGroup',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/chatroom/{user_id}', 'ChatController@getPrivateChatRoom');
+    Route::get('/chatroom/{chatroom_id}/messages', 'ChatController@fetchPrivateMessages');
+    Route::get('/groupchat/{group_id}/messages', 'ChatController@fetchGroupMessages');
 
-Route::get('/group/{group_id}/decline/{user_id}', [
-    'uses' => 'GruppenController@declineRequestGroup',
-    'middleware' => 'auth.jwt'
-]);
 
-Route::delete('/group/{group_id}', [
-    'uses' => 'GruppenController@delete',
-    'middleware' => 'auth.jwt'
-]);
+    /*
+    * Termin Routes
+    */
+    Route::post('/date', 'TerminController@store');
+    Route::post('/date/{date_id}/add_user', 'TerminController@addUser');
+    Route::post('/date/{date_id}/remove_user', 'TerminController@removeUser');
 
-Route::get('/group/{group_id}/attach/note/{note_id}', [
-    'uses' => 'GruppenController@attachNote',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/dates', 'TerminController@getAll');
+    Route::get('/dates/shared', 'TerminController@getAllShared');
+    Route::get('/date/requests', 'TerminController@allRequets');
+    Route::get('/date/{request_id}/accept', 'TerminController@acceptRequest');
+    Route::get('/date/{request_id}/decline', 'TerminController@declineRequest');
+    Route::get('/date/{id}', 'TerminController@get');
 
-Route::get('/group/{group_id}/detach/note/{note_id}', [
-    'uses' => 'GruppenController@detachNote',
-    'middleware' => 'auth.jwt'
-]);
+    Route::put('/date/{id}', 'TerminController@update');
 
-Route::get('/group/{group_id}/notes', [
-    'uses' => 'GruppenController@allNotes',
-    'middleware' => 'auth.jwt'
-]);
+    Route::delete('/date/{id}', 'TerminController@delete');
 
-Route::get('/group/{group_id}/attach/date/{date_id}', [
-    'uses' => 'GruppenController@attachTermin',
-    'middleware' => 'auth.jwt'
-]);
+    /*
+   * Notiz Routes
+   */
+    Route::post('/note', 'NotizController@store');
+    Route::post('/note/{note_id}/add_user', 'NotizController@addUser');
+    Route::post('/note/{note_id}/remove_user', 'NotizController@removeUser');
 
-Route::get('/group/{group_id}/detach/date/{date_id}', [
-    'uses' => 'GruppenController@detachTermin',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/notes', 'NotizController@getAll');
+    Route::get('/notes/shared', 'NotizController@getAllShared');
+    Route::get('/note/requests', 'NotizController@allRequets');
+    Route::get('/note/{request_id}/accept', 'NotizController@acceptRequest');
+    Route::get('/note/{request_id}/decline', 'NotizController@declineRequest');
+    Route::get('/note/{id}', 'NotizController@get');
 
-Route::get('/group/{group_id}/dates', [
-    'uses' => 'GruppenController@allDates',
-    'middleware' => 'auth.jwt'
-]);
 
-Route::post('/date', [
-    'uses' => 'TerminController@store',
-    'middleware' => 'auth.jwt'
-]);
+    Route::put('/note/{id}', 'NotizController@update');
 
-Route::get('/dates', [
-    'uses' => 'TerminController@getAll',
-    'middleware' => 'auth.jwt'
-]);
+    Route::delete('/note/{id}', 'NotizController@delete');
 
-Route::get('/date/{id}', [
-    'uses' => 'TerminController@get',
-    'middleware' => 'auth.jwt'
-]);
 
-Route::put('/date/{id}', [
-    'uses' => 'TerminController@update',
-    'middleware' => 'auth.jwt'
-]);
+    /*
+    * Gruppen Routes
+    */
+    Route::post('/group', 'GruppenController@create');
+    Route::post('/group/{group_id}/add_user', 'GruppenController@addUser');
+    Route::post('/group/{group_id}/remove_user', 'GruppenController@removeUser');
 
-Route::delete('/date/{id}', [
-    'uses' => 'TerminController@delete',
-    'middleware' => 'auth.jwt'
-]);
+    Route::get('/groups', 'GruppenController@getAll');
+    Route::get('/group/{group_id}/request_access', 'GruppenController@requestAcess');
+    Route::get('/group/{group_id}/requests', 'GruppenController@allRequestsGroup');
+    Route::get('/group/{group_id}/accept/{user_id}', 'GruppenController@acceptRequestGroup');
+    Route::get('/group/{group_id}/decline/{user_id}', 'GruppenController@declineRequestGroup');
+    Route::get('/group/{group_id}/attach/date/{date_id}', 'GruppenController@attachTermin');
+    Route::get('/group/{group_id}/detach/date/{date_id}', 'GruppenController@detachTermin');
+    Route::get('/group/{group_id}/attach/note/{note_id}', 'GruppenController@attachNote');
+    Route::get('/group/{group_id}/detach/note/{note_id}', 'GruppenController@detachNote');
+    Route::get('/group/{group_id}/notes', 'GruppenController@allNotes');
+    Route::get('/group/{group_id}/dates', 'GruppenController@allDates');
+    Route::get('/group/{group_id}', 'GruppenController@get');
+
+    Route::delete('/group/{group_id}', 'GruppenController@delete');
+
+
+});

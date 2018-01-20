@@ -57,9 +57,29 @@ class User extends Authenticatable
         return $this->hasMany('App\Note', 'id_user');
     }
 
+    public function sharedNotes()
+    {
+        return $this->hasManyThrough('App\Note', 'App\UserNote', 'id_user', 'id', 'id')->where('rolle', 'teilnehmer');
+    }
+
+    public function requestsNotes()
+    {
+        return $this->hasManyThrough('App\Note', 'App\UserNote', 'id_user', 'id', 'id')->where('rolle', 'angefragt');
+    }
+
     public function termine()
     {
         return $this->hasMany('App\Termin', 'id_user');
+    }
+
+    public function sharedTermine()
+    {
+        return $this->hasManyThrough('App\Termin', 'App\UserTermin', 'id_user', 'id', 'id')->where('status', 'angenommen');
+    }
+
+    public function requestsTermine()
+    {
+        return $this->hasManyThrough('App\Termin', 'App\UserTermin', 'id_user', 'id', 'id')->where('status', 'angefragt');
     }
 
     public function chatRooms()

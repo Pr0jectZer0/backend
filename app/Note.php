@@ -19,4 +19,10 @@ class Note extends Model
         return $this->hasMany('App\GroupNote', 'id_gruppe', 'id');
     }
 
+    public function shared(){
+        return $this->hasMany('App\UserNote', 'id_notiz', 'id');
+
+        //return $this->hasManyThrough('App\User', 'App\UserNote', 'id_notiz', 'id', 'id');
+    }
+
 }
