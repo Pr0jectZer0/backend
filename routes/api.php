@@ -87,10 +87,12 @@ Route::middleware(['auth.jwt'])->group(function () {
 
     Route::get('/dates', 'TerminController@getAll');
     Route::get('/dates/shared', 'TerminController@getAllShared');
+
     Route::get('/date/requests', 'TerminController@allRequets');
     Route::get('/date/{request_id}/accept', 'TerminController@acceptRequest');
     Route::get('/date/{request_id}/decline', 'TerminController@declineRequest');
     Route::get('/date/{id}', 'TerminController@get');
+
 
     Route::put('/date/{id}', 'TerminController@update');
 
@@ -115,7 +117,6 @@ Route::middleware(['auth.jwt'])->group(function () {
 
     Route::delete('/note/{id}', 'NotizController@delete');
 
-
     /*
     * Gruppen Routes
     */
@@ -137,6 +138,4 @@ Route::middleware(['auth.jwt'])->group(function () {
     Route::get('/group/{group_id}', 'GruppenController@get');
 
     Route::delete('/group/{group_id}', 'GruppenController@delete');
-
-
 });

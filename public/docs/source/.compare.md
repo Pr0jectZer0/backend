@@ -1390,7 +1390,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X POST "http://project-zero.local/api/date/{date_id}/add_user" \
 -H "Accept: application/json" \
-    -d "id"="4" \
+    -d "id"="31" \
 
 ```
 
@@ -1401,7 +1401,7 @@ var settings = {
     "url": "http://project-zero.local/api/date/{date_id}/add_user",
     "method": "POST",
     "data": {
-        "id": "4"
+        "id": "31"
 },
     "headers": {
         "accept": "application/json"
@@ -1421,7 +1421,7 @@ $.ajax(settings).done(function (response) {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    id | string |  required  | `1`, `3`, `4` or `5`
+    id | string |  required  | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `39`, `40`, `41`, `42`, `43`, `44`, `45`, `46` or `47`
 
 <!-- END_017eb7fdb55c91a677ed9885b3f8e438 -->
 
@@ -1433,7 +1433,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X POST "http://project-zero.local/api/date/{date_id}/remove_user" \
 -H "Accept: application/json" \
-    -d "id"="1" \
+    -d "id"="6" \
 
 ```
 
@@ -1444,7 +1444,7 @@ var settings = {
     "url": "http://project-zero.local/api/date/{date_id}/remove_user",
     "method": "POST",
     "data": {
-        "id": "1"
+        "id": "6"
 },
     "headers": {
         "accept": "application/json"
@@ -1464,7 +1464,7 @@ $.ajax(settings).done(function (response) {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    id | string |  required  | `1`, `3`, `4` or `5`
+    id | string |  required  | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `39`, `40`, `41`, `42`, `43`, `44`, `45`, `46` or `47`
 
 <!-- END_cea0ba467e3ffd5d9e6bc713a84b32c3 -->
 
@@ -1840,7 +1840,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X POST "http://project-zero.local/api/note/{note_id}/add_user" \
 -H "Accept: application/json" \
-    -d "id"="1" \
+    -d "id"="9" \
 
 ```
 
@@ -1851,7 +1851,7 @@ var settings = {
     "url": "http://project-zero.local/api/note/{note_id}/add_user",
     "method": "POST",
     "data": {
-        "id": "1"
+        "id": "9"
 },
     "headers": {
         "accept": "application/json"
@@ -1871,7 +1871,7 @@ $.ajax(settings).done(function (response) {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    id | string |  required  | `1`, `3`, `4` or `5`
+    id | string |  required  | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `39`, `40`, `41`, `42`, `43`, `44`, `45`, `46` or `47`
 
 <!-- END_9e56c13879cee6483994a86d4d317a90 -->
 
@@ -1883,7 +1883,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X POST "http://project-zero.local/api/note/{note_id}/remove_user" \
 -H "Accept: application/json" \
-    -d "id"="5" \
+    -d "id"="47" \
 
 ```
 
@@ -1894,7 +1894,7 @@ var settings = {
     "url": "http://project-zero.local/api/note/{note_id}/remove_user",
     "method": "POST",
     "data": {
-        "id": "5"
+        "id": "47"
 },
     "headers": {
         "accept": "application/json"
@@ -1914,7 +1914,7 @@ $.ajax(settings).done(function (response) {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    id | string |  required  | `1`, `3`, `4` or `5`
+    id | string |  required  | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `39`, `40`, `41`, `42`, `43`, `44`, `45`, `46` or `47`
 
 <!-- END_2a4edfe060a03e1c4d714a47b1255140 -->
 
@@ -2290,7 +2290,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X POST "http://project-zero.local/api/group/{group_id}/add_user" \
 -H "Accept: application/json" \
-    -d "id"="3" \
+    -d "id"="13" \
 
 ```
 
@@ -2301,7 +2301,7 @@ var settings = {
     "url": "http://project-zero.local/api/group/{group_id}/add_user",
     "method": "POST",
     "data": {
-        "id": "3"
+        "id": "13"
 },
     "headers": {
         "accept": "application/json"
@@ -2321,7 +2321,7 @@ $.ajax(settings).done(function (response) {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    id | string |  required  | `1`, `3`, `4` or `5`
+    id | string |  required  | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `39`, `40`, `41`, `42`, `43`, `44`, `45`, `46` or `47`
 
 <!-- END_e449b8465af8189a9ddc80287e204d88 -->
 
@@ -2333,7 +2333,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X POST "http://project-zero.local/api/group/{group_id}/remove_user" \
 -H "Accept: application/json" \
-    -d "id"="3" \
+    -d "id"="16" \
 
 ```
 
@@ -2344,7 +2344,7 @@ var settings = {
     "url": "http://project-zero.local/api/group/{group_id}/remove_user",
     "method": "POST",
     "data": {
-        "id": "3"
+        "id": "16"
 },
     "headers": {
         "accept": "application/json"
@@ -2364,7 +2364,7 @@ $.ajax(settings).done(function (response) {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    id | string |  required  | `1`, `3`, `4` or `5`
+    id | string |  required  | `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `39`, `40`, `41`, `42`, `43`, `44`, `45`, `46` or `47`
 
 <!-- END_2dbe9302a8bd962a114cb5a650da54b6 -->
 

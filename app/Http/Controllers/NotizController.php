@@ -163,7 +163,7 @@ class NotizController extends Controller
     {
         $user = JWTAuth::toUser($request->input('token'));
 
-        $request = UserNote::where('id_user',$user->id)->where('id_notiz', $request_id)->where('rolle', 'angefragt')->first();
+        $request = UserNote::where('id_user',$user->id)->where('id', $request_id)->where('rolle', 'angefragt')->first();
         if(!$request){
             return response()->json(['message' => 'Notiz wurde nicht gefunden oder bereits teilnehmer.'], 404);
         }
@@ -181,7 +181,7 @@ class NotizController extends Controller
     {
         $user = JWTAuth::toUser($request->input('token'));
 
-        $request = UserNote::where('id_user',$user->id)->where('id_notiz', $request_id)->first();
+        $request = UserNote::where('id_user',$user->id)->where('id', $request_id)->first();
         if(!$request){
             return response()->json(['message' => 'Notiz wurde nicht gefunden oder bereits teilnehmer.'], 404);
         }

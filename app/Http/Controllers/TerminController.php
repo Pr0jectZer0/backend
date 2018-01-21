@@ -65,13 +65,13 @@ class TerminController extends Controller
             $termin->titel = $request->input('titel');
         }
         if ($request->input('beschreibung') != "") {
-            $termin->text = $request->input('beschreibung');
+            $termin->beschreibung = $request->input('beschreibung');
         }
         if ($request->input('end_datum') != "") {
-            $termin->text = $request->input('end_datum');
+            $termin->end_datum = $request->input('end_datum');
         }
         if ($request->input('start_datum') != "") {
-            $termin->text = $request->input('start_datum');
+            $termin->start_datum = $request->input('start_datum');
         }
         $termin->save();
         return response()->json(['date' => $termin], 200);
@@ -169,7 +169,7 @@ class TerminController extends Controller
     {
         $user = JWTAuth::toUser($request->input('token'));
 
-        $request = UserTermin::where('id_user',$user->id)->where('id_termin', $request_id)->where('status', 'angefragt')->first();
+        $request = UserTermin::where('id_user',$user->id)->where('id', $request_id)->where('status', 'angefragt')->first();
         if(!$request){
             return response()->json(['message' => 'Termin wurde nicht gefunden oder bereits teilnehmer.'], 404);
         }
@@ -187,7 +187,7 @@ class TerminController extends Controller
     {
         $user = JWTAuth::toUser($request->input('token'));
 
-        $request = UserTermin::where('id_user',$user->id)->where('id_termin', $request_id)->where('status', 'angefragt')->first();
+        $request = UserTermin::where('id_user',$user->id)->where('id', $request_id)->where('status', 'angefragt')->first();
         if(!$request){
             return response()->json(['message' => 'Termin wurde nicht gefunden oder bereits teilnehmer.'], 404);
         }
