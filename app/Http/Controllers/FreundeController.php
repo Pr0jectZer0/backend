@@ -89,7 +89,7 @@ class FreundeController extends Controller
             return response()->json($response, 200);
 
         } else {
-            return response()->json(['message' => 'Keine Freundschaftsanfragen.'], 400);
+            return response()->json(['message' => 'Keine Freundschaftsanfragen.'], 200);
         }
 
 
