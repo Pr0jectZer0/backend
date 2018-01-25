@@ -29,6 +29,7 @@ Route::middleware(['auth.jwt'])->group(function () {
     Route::get('/user/game/list', 'UserController@showGames');
     Route::get('/user/groups', 'GruppenController@getAllUser');
     Route::get('/user/groups/requests', 'GruppenController@allRequestsUser');
+    Route::get('/user/groups/admin_requests', 'GruppenController@allAdminRequests');
     Route::get('/user/group/{group_id}/accept', 'GruppenController@acceptRequestUser');
     Route::get('/user/group/{group_id}/decline', 'GruppenController@declineRequestUser');
     Route::get('/user/{id}', 'UserController@getById');
@@ -37,6 +38,8 @@ Route::middleware(['auth.jwt'])->group(function () {
 
     Route::delete('/user/{id}', 'UserController@delete');
     Route::delete('/user/game/remove/{id}', 'UserController@removeGame');
+
+
 
 
     /*

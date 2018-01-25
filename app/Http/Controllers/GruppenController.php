@@ -505,4 +505,30 @@ class GruppenController extends Controller
 
         return response()->json($dates, 200);
     }
+
+    /**
+     * Alle Admin Anfragen des Users
+     */
+    public function allAdminRequests(Request $request){
+
+        $user = JWTAuth::toUser($request->input('token'));
+
+        $groupsAdmin = Group::whereHas('users', function ($query) use ($user) {
+            $query->where('id_user', $user->id);
+            $query->where('rolle', 'admin');
+        })->pluck('id');
+
+
+        $groups = GroupUser::with(['user', 'group'])->whereIn('id_gruppe', $groupsAdmin)->where('rolle', 'angefragt_gruppe')->get();
+
+        if (count($groups) != 0) {
+            $response = [
+                'requests' => $groups
+            ];
+            return response()->json($response, 200);
+        } else {
+            return response()->json(['message' => 'Keine Gruppen anfragen.'], 200);
+        }
+
+    }
 }
