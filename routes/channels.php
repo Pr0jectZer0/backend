@@ -15,3 +15,7 @@
 Broadcast::channel('chat.{id}', function ($id) {
     return true;
 });
+
+Broadcast::channel('group-chat.{id}', function ($id) {
+    return true;
+});
