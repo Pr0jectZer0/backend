@@ -355,6 +355,48 @@ $.ajax(settings).done(function (response) {
 
 <!-- END_66ee7baf0e45abbcf0e68137a187fc61 -->
 
+<!-- START_12bd43ed40ad7dfbe5aa763dba4f2379 -->
+## Alle Admin Anfragen des Users
+
+> Example request:
+
+```bash
+curl -X GET "http://project-zero.local/api/user/groups/admin_requests" \
+-H "Accept: application/json"
+```
+
+```javascript
+var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/user/groups/admin_requests",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});
+```
+
+> Example response:
+
+```json
+{
+    "error": "token_not_provided"
+}
+```
+
+### HTTP Request
+`GET api/user/groups/admin_requests`
+
+`HEAD api/user/groups/admin_requests`
+
+
+<!-- END_12bd43ed40ad7dfbe5aa763dba4f2379 -->
+
 <!-- START_c68e1ddad4fbbac0efe735c908be3903 -->
 ## Gruppen Anfrage akzeptieren von Gruppe
 

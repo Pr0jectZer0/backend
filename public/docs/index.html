@@ -331,6 +331,36 @@ $.ajax(settings).done(function (response) {
 <p><code>GET api/user/groups/requests</code></p>
 <p><code>HEAD api/user/groups/requests</code></p>
 <!-- END_66ee7baf0e45abbcf0e68137a187fc61 -->
+<!-- START_12bd43ed40ad7dfbe5aa763dba4f2379 -->
+<h2>Alle Admin Anfragen des Users</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET "http://project-zero.local/api/user/groups/admin_requests" \
+-H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://project-zero.local/api/user/groups/admin_requests",
+    "method": "GET",
+    "headers": {
+        "accept": "application/json"
+    }
+}
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+});</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "error": "token_not_provided"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/user/groups/admin_requests</code></p>
+<p><code>HEAD api/user/groups/admin_requests</code></p>
+<!-- END_12bd43ed40ad7dfbe5aa763dba4f2379 -->
 <!-- START_c68e1ddad4fbbac0efe735c908be3903 -->
 <h2>Gruppen Anfrage akzeptieren von Gruppe</h2>
 <blockquote>
